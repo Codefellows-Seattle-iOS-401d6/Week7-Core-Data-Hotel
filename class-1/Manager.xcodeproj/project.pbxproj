@@ -364,7 +364,7 @@
 				INFOPLIST_FILE = Manager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Erin-Roby.Manager";
+				PRODUCT_BUNDLE_IDENTIFIER = com.seanchampagne.Manager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -376,7 +376,7 @@
 				INFOPLIST_FILE = Manager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Erin-Roby.Manager";
+				PRODUCT_BUNDLE_IDENTIFIER = com.seanchampagne.Manager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -400,6 +400,7 @@
 				0DBBAC0D1D3D501800F4D322 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
