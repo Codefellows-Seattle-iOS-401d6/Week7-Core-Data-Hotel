@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "Hotel.h"
+#import "Room.h"
 
 @interface AppDelegate ()
 
@@ -67,7 +69,42 @@
         NSError *jsonError;
         NSDictionary *rootObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonError];
         
-        NSLog(@"%@", rootObject);
+        if (jsonError) {
+            NSLog(@"Error serializing json data.  Error: %@", jsonError);
+        } else {
+            hotels = rootObject[@"Hotels"];
+            
+            for (NSDictionary *hotel in hotels) {
+                Hotel *newHotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+                
+                newHotel.name = hotel[@"name"];
+                newHotel.location = hotel[@"location"];
+                newHotel.stars = hotel[@"stars"];
+                
+                rooms = hotel[@"rooms"];
+                
+                for (NSDictionary *room in rooms) {
+                    Room *newRoom = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+                    
+                    newRoom.number = room[@"number"];
+                    newRoom.beds = room[@"beds"];
+                    newRoom.rate = room[@"rate"];
+                    
+                    newRoom.hotel = newHotel;
+                }
+            }
+            NSError *saveError;
+            BOOL isSaved = [self.managedObjectContext save:&saveError];
+            
+            if (isSaved) {
+                NSLog(@"Saved to Core Data successfully");
+            } else {
+                NSLog(@"Error saving to core date. Error: %@", saveError);
+            }
+            
+        }
+    } else {
+        NSLog(@"Database contains data");
     }
 }
 
