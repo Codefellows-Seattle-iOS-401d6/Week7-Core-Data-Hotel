@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "HotelsViewController.h"
 #import "RoomsViewController.h"
+#import "DateViewController.h"
+#import "AppDelegate.h"
 
 
 @interface ViewController ()
@@ -32,6 +34,20 @@
 - (void)setupViewController
 {
     [self.navigationItem setTitle:@"HotelManager"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Guest"];
+    
+    NSArray *guests = [context executeFetchRequest:request error:nil];
+    
+    NSLog(@"Guest Count: %li", guests.count);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -193,12 +209,12 @@
 
 - (void)bookButtonSelected:(UIButton *)sender
 {
-    [self.navigationController pushViewController:[[RoomsViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[DateViewController alloc]init] animated:YES];
 }
 
 - (void)lookupButtonSelected:(UIButton *)sender
 {
-    NSLog(@"Lookup...");
+//    [self.navigationController pushViewController:[[alloc]init animated:YES];
 }
 
 

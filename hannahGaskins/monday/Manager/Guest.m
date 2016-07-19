@@ -9,8 +9,19 @@
 #import "Guest.h"
 #import "Reservation.h"
 
+#import "NSObject+NSManagedObject.h"
+
 @implementation Guest
 
-// Insert code here to add functionality to your managed object subclass
++ (instancetype)guestWithName:(NSString *)name
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    Guest *guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:[NSObject managerContext]];
+    
+    guest.name = name;
+    return guest;
+}
+
 
 @end
