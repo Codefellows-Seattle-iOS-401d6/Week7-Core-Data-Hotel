@@ -2,7 +2,7 @@
 //  RoomsViewController.m
 //  Manager
 //
-//  Created by Erin Roby on 7/18/16.
+//  Created by Sean Champagne on 7/18/16.
 //  Copyright © 2016 Sean Champagne. All rights reserved.
 //
 

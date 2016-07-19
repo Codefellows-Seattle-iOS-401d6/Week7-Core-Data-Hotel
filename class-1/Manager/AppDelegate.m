@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Manager
 //
-//  Created by Erin Roby on 7/18/16.
+//  Created by Sean Champagne on 7/18/16.
 //  Copyright © 2016 Sean Champagne. All rights reserved.
 //
 
@@ -110,7 +110,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "Erin-Roby.Manager" in the application's documents directory.
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.seanchampagne.Manager" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
