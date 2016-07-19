@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Hotel.h"
 #import "Room.h"
+#import "RoomsViewController.h"
 
 @interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -101,7 +102,7 @@
     
 }
 
-#pragma mark - UITableViewData Source and Delegate
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.datasource.count;
@@ -121,13 +122,32 @@
 }
 
 
-//Delegate
+#pragma mark - UITableViewDelegate
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 150.0;
-//}
-//
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    UIImage *headerImage
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 150.0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIImage *headerImage = [UIImage imageNamed:@"hotel"];
+    UIImageView *headerView = [[UIImageView alloc]initWithImage:headerImage];
+    headerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 150.0);
+    headerView.contentMode = UIViewContentModeScaleAspectFill;
+    headerView.clipsToBounds = YES;
+    
+    return headerView;
+}
+
+// Segue type method wihtout using segue
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Hotel *hotel = self.datasource[indexPath.row];
+    RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
+    
+    roomsViewController.hotel = hotel;
+    
+    [self.navigationController pushViewController:roomsViewController animated:YES];
+}
+
+
 @end
