@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "HotelsViewController.h"
+#import "AppDelegate.h"
+#import "DateViewController.h"
 
 @interface ViewController ()
 
@@ -187,7 +189,7 @@
 }
 
 - (void)bookButtonSelected:(UIButton *)sender {
-    NSLog(@"You click the book button, unfortunately it doesn't do anything... other than relay this message");
+    [self.navigationController pushViewController:[[DateViewController alloc]init] animated:YES];
 }
 
 - (void)lookUpButtonSelected:(UIButton *)sender {
