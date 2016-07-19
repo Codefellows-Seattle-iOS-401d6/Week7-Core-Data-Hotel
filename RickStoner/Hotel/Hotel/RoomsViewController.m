@@ -27,9 +27,6 @@
 {
     [super viewDidLoad];
     [self setupTableView];
-    for (Room *room in self.hotel.room) {
-        NSLog(@"%@", room.number);
-    }
 }
 
 - (void)didReceiveMemoryWarning
