@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044B80201D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B801F1D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.m */; };
 		04C9EFE71D3D80C100846746 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C9EFE61D3D80C100846746 /* main.m */; };
 		04C9EFEA1D3D80C100846746 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C9EFE91D3D80C100846746 /* AppDelegate.m */; };
 		04C9EFED1D3D80C100846746 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C9EFEC1D3D80C100846746 /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044B801E1D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+NSManagedObjectContextCategory.h"; sourceTree = "<group>"; };
+		044B801F1D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+NSManagedObjectContextCategory.m"; sourceTree = "<group>"; };
 		04C9EFE21D3D80C100846746 /* Hotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C9EFE61D3D80C100846746 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04C9EFE81D3D80C100846746 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 		04C9EFE51D3D80C100846746 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				044B801E1D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.h */,
+				044B801F1D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.m */,
 				04C9F0051D3D87A400846746 /* hotel.png */,
 				04C9F0061D3D87A400846746 /* room.png */,
 				04C9F0031D3D877800846746 /* hotel.json */,
@@ -256,6 +261,7 @@
 				04C9F0311D3D8A2F00846746 /* Reservation+CoreDataProperties.m in Sources */,
 				04C9F0361D3D8A2F00846746 /* Hotel.m in Sources */,
 				04C9EFE71D3D80C100846746 /* main.m in Sources */,
+				044B80201D3EC0B2007BB676 /* NSManagedObject+NSManagedObjectContextCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +406,7 @@
 				04C9EFFE1D3D80C100846746 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
