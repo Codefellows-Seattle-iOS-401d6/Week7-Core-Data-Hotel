@@ -47,12 +47,12 @@
 - (void)bootstrapApp {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
     NSError *error;
-    
+
     NSInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
     
     if (count == 0) {
         NSDictionary *hotels = [NSDictionary new];
-        NSDictionary *rooms = [NSDictionary new];
+        NSDictionary *roomsDictionary = [NSDictionary new];
         
         NSString *jsonPath = [[NSBundle mainBundle]pathForResource:@"hotels" ofType:@"json"];
         NSData *jsonData = [NSData dataWithContentsOfFile:jsonPath];
@@ -74,10 +74,10 @@
                 newHotel.location = hotel[@"location"];
                 newHotel.stars = hotel[@"stars"];
                 
-                rooms = hotel[@"rooms"];
+                roomsDictionary = hotel[@"rooms"];
                 NSMutableSet *rooms = [[NSMutableSet alloc]init];
                 
-                for (NSDictionary *room in rooms) {
+                for (NSDictionary *room in roomsDictionary) {
                     Room *newRoom = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
                     newRoom.number = room[@"number"];
                     newRoom.beds = room[@"beds"];
