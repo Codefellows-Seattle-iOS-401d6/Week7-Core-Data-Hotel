@@ -1,26 +1,24 @@
 //
-//  Guest.h
-//  Manager
+//  Hotel.h
+//  Manager-Class-2
 //
-//  Created by Sean Champagne on 7/18/16.
+//  Created by Sean Champagne on 7/19/16.
 //  Copyright © 2016 Sean Champagne. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Reservation;
+@class Room;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Guest : NSManagedObject
+@interface Hotel : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
-
-+(instancetype)guestWithName:(NSString *)name;;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Guest+CoreDataProperties.h"
+#import "Hotel+CoreDataProperties.h"

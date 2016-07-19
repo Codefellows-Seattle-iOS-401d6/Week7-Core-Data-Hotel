@@ -1,8 +1,8 @@
 //
 //  Guest.h
-//  Manager
+//  Manager-Class-2
 //
-//  Created by Sean Champagne on 7/18/16.
+//  Created by Sean Champagne on 7/19/16.
 //  Copyright © 2016 Sean Champagne. All rights reserved.
 //
 
@@ -15,9 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Guest : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
-
-+(instancetype)guestWithName:(NSString *)name;;
++(instancetype)guestWithName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email;
 
 @end
 

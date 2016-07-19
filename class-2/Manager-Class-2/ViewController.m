@@ -45,7 +45,7 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Guest"];
     
-    NSArray *guests = [context executeRequest:request error:nil];
+    NSArray *guests = [context executeFetchRequest:request error:nil];
     
     NSLog(@"Guest List Count: %li", guests.count);
 }
@@ -144,7 +144,7 @@
                                                                            multiplier:1.0
                                                                              constant:0.0];
     
-
+    
     NSLayoutConstraint *bookButtonHeight = [NSLayoutConstraint constraintWithItem:bookButton
                                                                         attribute:NSLayoutAttributeHeight
                                                                         relatedBy:NSLayoutRelationEqual
@@ -184,11 +184,11 @@
     lookupButtonLeading.active = YES;
     lookupButtonBottom.active = YES;
     lookupButtonTrailing.active = YES;
-
+    
     bookButtonHeight.active = YES;
     browseButtonHeight.active = YES;
     lookupButtonHeight.active = YES;
-
+    
     [browseButton addTarget:self action:@selector(browseButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [bookButton addTarget:self action:@selector(bookButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [lookupButton addTarget:self action:@selector(lookupButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
