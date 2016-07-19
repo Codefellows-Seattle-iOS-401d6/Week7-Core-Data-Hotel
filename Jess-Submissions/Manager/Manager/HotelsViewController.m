@@ -20,32 +20,28 @@
 
 @implementation HotelsViewController
 
-- (NSArray *)datasource
-{
-    if (!_datasource) {
-        
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = delegate.managedObjectContext;
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        
-        NSError *fetchError;
-        
-        _datasource = [context executeFetchRequest:request
-                                             error:&fetchError];
-        
-        if (fetchError) {
-            NSLog(@"Error fetching from Core Data.");
-        }
-    }
-    
-    return _datasource;
-}
 
 - (void)loadView
 {
     [super loadView];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+}
+
+- (NSArray *)datasource
+{
+    if (!_datasource) {
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = delegate.managedObjectContext;
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+        NSError *fetchError;
+        _datasource = [context executeFetchRequest:request error:&fetchError];
+        
+        if (fetchError) {
+            NSLog(@"Error fetching from Core Data");
+        }
+    }
+    
+    return _datasource;
 }
 
 - (void)viewDidLoad
