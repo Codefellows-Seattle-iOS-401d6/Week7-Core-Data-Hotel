@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Insert code here to declare functionality of your managed object subclass
 
++(instancetype)guestWithNameAndEmail:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email  payment:(NSString *)payment notes:(NSString *)notes;
+
 @end
 
 NS_ASSUME_NONNULL_END

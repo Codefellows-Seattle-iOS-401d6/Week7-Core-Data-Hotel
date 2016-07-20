@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 #import "HotelsViewController.h"
+#import "AppDelegate.h"
+#import "DateViewController.h"
+
+@import CoreData;
 
 @interface ViewController ()
 
@@ -37,6 +41,17 @@
 
 - (void)setupViewController {
     [self.navigationItem setTitle:@"ObjectManager"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    AppDelegate  *delegate = [[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: @"Guest"];
+    NSArray *guests = [context executeFetchRequest: request error: nil];
+    
+    NSLog(@"guests: %lu", (unsigned long)guests.count );
 }
 
 - (void) setupCustomLayout {
@@ -90,6 +105,33 @@
     browseButtonHeight.active = YES;
     
     [browseButton addTarget:self action:@selector(browseButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSLayoutConstraint *reserveButtonLeading = [NSLayoutConstraint constraintWithItem:reserveButton
+                                                                           attribute:NSLayoutAttributeLeading
+                                                                           relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                                           attribute:NSLayoutAttributeLeading
+                                                                          multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *reserveButtonTop = [NSLayoutConstraint constraintWithItem:reserveButton
+                                                                       attribute:NSLayoutAttributeTop
+                                                                       relatedBy:NSLayoutRelationEqual toItem:browseButton
+                                                                       attribute:NSLayoutAttributeBottom
+                                                                      multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *reserveButtonTrailing = [NSLayoutConstraint constraintWithItem:reserveButton
+                                                                            attribute:NSLayoutAttributeTrailing
+                                                                            relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                                            attribute:NSLayoutAttributeTrailing
+                                                                           multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *reserveButtonHeight = [NSLayoutConstraint constraintWithItem:reserveButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute: NSLayoutAttributeHeight multiplier:0.5 constant:1.0];
+    
+    [self.view addSubview:reserveButton];
+    
+    reserveButtonTop.active = YES;
+    reserveButtonLeading.active = YES;
+    reserveButtonTrailing.active = YES;
+    reserveButtonHeight.active = YES;
+    
+    [reserveButton addTarget:self action:@selector(reserveButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+
 
 }
 
@@ -101,6 +143,8 @@
 }
 
 -(void) reserveButtonSelected: (UIButton *)sender{
+    
+    [self.navigationController pushViewController:[DateViewController new] animated:YES];
     
 }
 -(void) lookupButtonSelected: (UIButton *)sender{
