@@ -14,14 +14,15 @@
 #import "NSObject+NSManagedObject.h"
 
 
-@interface LookUpViewController ()
+@interface LookUpViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+
 
 @property(strong, nonatomic) NSArray *datasource;
 @property(strong, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation LookUpViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@implementation LookUpViewController
 
 -(void)loadView
 {
@@ -111,7 +112,7 @@
 
 // tableviewDelegate
 
--(CGFloat)tableViewL(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 44.0;
 }

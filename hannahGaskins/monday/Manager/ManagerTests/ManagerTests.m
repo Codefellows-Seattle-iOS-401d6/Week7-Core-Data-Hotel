@@ -10,7 +10,7 @@
 
 @interface ManagerTests : XCTestCase
 
-@property (strong, nonatomic) NSManagedObject *context;
+@property (strong, nonatomic) NSManagedObjectContext *context;
 
 @end
 
@@ -20,7 +20,7 @@
 {
     [super setUp];
     
-    [self setContext:[NSManagedObject managerContext]];
+    [self setContext:[NSManagedObjectContext managerContext]];
 }
 
 - (void)tearDown

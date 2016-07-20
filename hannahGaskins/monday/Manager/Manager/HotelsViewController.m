@@ -162,9 +162,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    
-//    Hotel *hotel = self.datasource[indexPath.row];
-    
+
+    //    Hotel *hotel = self.datasource[indexPath.row];
     Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath]; // for each cell it will grab that hotel
     cell.textLabel.text = hotel.name;
     
@@ -209,7 +208,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Hotel *hotel = [[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
     RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
     
     roomsViewController.hotel = hotel;
