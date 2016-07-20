@@ -22,6 +22,8 @@
 		EE3A8F5C1D3E94A900A8179E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F5B1D3E94A900A8179E /* BookViewController.m */; };
 		EE3A8F5F1D3E9FA900A8179E /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F5E1D3E9FA900A8179E /* AvailabilityViewController.m */; };
 		EE3A8F621D3EA89700A8179E /* DateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F611D3EA89700A8179E /* DateViewController.m */; };
+		EE3A8F6A1D3FE20A00A8179E /* ManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F691D3FE20A00A8179E /* ManagerTests.m */; };
+		EE3A8F731D3FF9A600A8179E /* LookUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */; };
 		EECC5F1B1D3DABD90071BB8B /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F0C1D3DABD90071BB8B /* Room+CoreDataProperties.m */; };
 		EECC5F1C1D3DABD90071BB8B /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F0E1D3DABD90071BB8B /* Room.m */; };
 		EECC5F1D1D3DABD90071BB8B /* Hotel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F101D3DABD90071BB8B /* Hotel+CoreDataProperties.m */; };
@@ -31,6 +33,16 @@
 		EECC5F211D3DABD90071BB8B /* Guest+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F181D3DABD90071BB8B /* Guest+CoreDataProperties.m */; };
 		EECC5F221D3DABD90071BB8B /* Guest.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F1A1D3DABD90071BB8B /* Guest.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EE3A8F6C1D3FE20A00A8179E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE113A8D1D3D4FFC00EB36C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE113A941D3D4FFC00EB36C3;
+			remoteInfo = Manager;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EE113A951D3D4FFC00EB36C3 /* Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +70,11 @@
 		EE3A8F5E1D3E9FA900A8179E /* AvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailabilityViewController.m; sourceTree = "<group>"; };
 		EE3A8F601D3EA89700A8179E /* DateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateViewController.h; sourceTree = "<group>"; };
 		EE3A8F611D3EA89700A8179E /* DateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateViewController.m; sourceTree = "<group>"; };
+		EE3A8F671D3FE20A00A8179E /* ManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE3A8F691D3FE20A00A8179E /* ManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerTests.m; sourceTree = "<group>"; };
+		EE3A8F6B1D3FE20A00A8179E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE3A8F711D3FF9A600A8179E /* LookUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookUpViewController.h; sourceTree = "<group>"; };
+		EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpViewController.m; sourceTree = "<group>"; };
 		EECC5F0B1D3DABD90071BB8B /* Room+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room+CoreDataProperties.h"; sourceTree = "<group>"; };
 		EECC5F0C1D3DABD90071BB8B /* Room+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Room+CoreDataProperties.m"; sourceTree = "<group>"; };
 		EECC5F0D1D3DABD90071BB8B /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
@@ -84,6 +101,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE3A8F641D3FE20A00A8179E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				EE113A971D3D4FFC00EB36C3 /* Manager */,
+				EE3A8F681D3FE20A00A8179E /* ManagerTests */,
 				EE113A961D3D4FFC00EB36C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				EE113A951D3D4FFC00EB36C3 /* Manager.app */,
+				EE3A8F671D3FE20A00A8179E /* ManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +167,8 @@
 		EE113AB91D3D887500EB36C3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EE3A8F711D3FF9A600A8179E /* LookUpViewController.h */,
+				EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */,
 				EE3A8F5A1D3E94A900A8179E /* BookViewController.h */,
 				EE3A8F5B1D3E94A900A8179E /* BookViewController.m */,
 				EE3A8F5D1D3E9FA900A8179E /* AvailabilityViewController.h */,
@@ -208,6 +236,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		EE3A8F681D3FE20A00A8179E /* ManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A8F691D3FE20A00A8179E /* ManagerTests.m */,
+				EE3A8F6B1D3FE20A00A8179E /* Info.plist */,
+			);
+			path = ManagerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -228,6 +265,24 @@
 			productReference = EE113A951D3D4FFC00EB36C3 /* Manager.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EE3A8F661D3FE20A00A8179E /* ManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE3A8F701D3FE20A00A8179E /* Build configuration list for PBXNativeTarget "ManagerTests" */;
+			buildPhases = (
+				EE3A8F631D3FE20A00A8179E /* Sources */,
+				EE3A8F641D3FE20A00A8179E /* Frameworks */,
+				EE3A8F651D3FE20A00A8179E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE3A8F6D1D3FE20A00A8179E /* PBXTargetDependency */,
+			);
+			name = ManagerTests;
+			productName = ManagerTests;
+			productReference = EE3A8F671D3FE20A00A8179E /* ManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -239,6 +294,10 @@
 				TargetAttributes = {
 					EE113A941D3D4FFC00EB36C3 = {
 						CreatedOnToolsVersion = 7.3.1;
+					};
+					EE3A8F661D3FE20A00A8179E = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = EE113A941D3D4FFC00EB36C3;
 					};
 				};
 			};
@@ -256,6 +315,7 @@
 			projectRoot = "";
 			targets = (
 				EE113A941D3D4FFC00EB36C3 /* Manager */,
+				EE3A8F661D3FE20A00A8179E /* ManagerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -270,6 +330,13 @@
 				EE113AB51D3D884F00EB36C3 /* hotel.png in Resources */,
 				EE113AB61D3D884F00EB36C3 /* hotels.json in Resources */,
 				EE113AA81D3D4FFC00EB36C3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE3A8F651D3FE20A00A8179E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,13 +362,30 @@
 				EECC5F211D3DABD90071BB8B /* Guest+CoreDataProperties.m in Sources */,
 				EECC5F1F1D3DABD90071BB8B /* Reservation+CoreDataProperties.m in Sources */,
 				EECC5F1D1D3DABD90071BB8B /* Hotel+CoreDataProperties.m in Sources */,
+				EE3A8F731D3FF9A600A8179E /* LookUpViewController.m in Sources */,
 				EECC5F1C1D3DABD90071BB8B /* Room.m in Sources */,
 				EECC5F1E1D3DABD90071BB8B /* Hotel.m in Sources */,
 				EE113AA61D3D4FFC00EB36C3 /* Manager.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE3A8F631D3FE20A00A8179E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE3A8F6A1D3FE20A00A8179E /* ManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EE3A8F6D1D3FE20A00A8179E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE113A941D3D4FFC00EB36C3 /* Manager */;
+			targetProxy = EE3A8F6C1D3FE20A00A8179E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EE113AA91D3D4FFC00EB36C3 /* LaunchScreen.storyboard */ = {
@@ -421,6 +505,30 @@
 			};
 			name = Release;
 		};
+		EE3A8F6E1D3FE20A00A8179E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hannahgaskins.ManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Manager.app/Manager";
+			};
+			name = Debug;
+		};
+		EE3A8F6F1D3FE20A00A8179E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hannahgaskins.ManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Manager.app/Manager";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -441,6 +549,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EE3A8F701D3FE20A00A8179E /* Build configuration list for PBXNativeTarget "ManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE3A8F6E1D3FE20A00A8179E /* Debug */,
+				EE3A8F6F1D3FE20A00A8179E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

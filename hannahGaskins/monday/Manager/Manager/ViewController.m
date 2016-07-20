@@ -11,6 +11,7 @@
 #import "RoomsViewController.h"
 #import "DateViewController.h"
 #import "AppDelegate.h"
+#import "LookUpViewController.h"
 
 
 @interface ViewController ()
@@ -214,7 +215,7 @@
 
 - (void)lookupButtonSelected:(UIButton *)sender
 {
-//    [self.navigationController pushViewController:[[alloc]init animated:YES];
+    [self.navigationController pushViewController:[[LookUpViewController alloc]init] animated:YES];
 }
 
 
