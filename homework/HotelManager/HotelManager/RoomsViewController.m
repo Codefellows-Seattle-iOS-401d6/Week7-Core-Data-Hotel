@@ -8,6 +8,7 @@
 
 #import "RoomsViewController.h"
 #import "Hotel.h"
+#import "Room.h"
 
 @interface RoomsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -100,9 +101,7 @@
     }
     
     Room *room = self.datasource[indexPath.row];
-    
     cell.textLabel.text = [NSString stringWithFormat:@"Room Number:%@ Beds:%@ Rate:$%@", room.number, room.beds, room.rate];
-    
     return cell;
 }
 
@@ -116,11 +115,11 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIImage *headerImage = [UIImage imageNamed:@"room"];
-    UIImageView *headerView = [[UIImageView alloc]initWithImage:headerImage];
-    headerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 150.0);
-    headerView.contentMode = UIViewContentModeScaleAspectFill;
-    headerView.clipsToBounds = YES;
-    return headerView;
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:headerImage];
+    imageView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 150.0);
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    return imageView;
 }
 
 @end

@@ -2,12 +2,14 @@
 //  Hotel.h
 //  HotelManager
 //
-//  Created by Sung Kim on 7/18/16.
+//  Created by Sung Kim on 7/19/16.
 //  Copyright © 2016 Sung Kim. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+
+@class Room;
 
 NS_ASSUME_NONNULL_BEGIN
 

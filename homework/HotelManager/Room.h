@@ -1,19 +1,19 @@
 //
-//  Guest.h
+//  Room.h
 //  HotelManager
 //
-//  Created by Sung Kim on 7/18/16.
+//  Created by Sung Kim on 7/19/16.
 //  Copyright © 2016 Sung Kim. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Reservation;
+@class Hotel, Reservation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Guest : NSManagedObject
+@interface Room : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -21,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Guest+CoreDataProperties.h"
+#import "Room+CoreDataProperties.h"

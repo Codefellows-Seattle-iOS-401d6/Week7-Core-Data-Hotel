@@ -2,7 +2,7 @@
 //  Hotel+CoreDataProperties.h
 //  HotelManager
 //
-//  Created by Sung Kim on 7/18/16.
+//  Created by Sung Kim on 7/19/16.
 //  Copyright © 2016 Sung Kim. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,14 +10,13 @@
 //
 
 #import "Hotel.h"
-#import "Room.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Hotel (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *location;
+@property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSNumber *stars;
 @property (nullable, nonatomic, retain) NSSet<Room *> *room;
 
