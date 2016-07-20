@@ -2,11 +2,14 @@
 //  HotelsViewController.m
 //  Manager
 //
-//  Created by Michael Babiy on 7/18/16.
-//  Copyright © 2016 Michael Babiy. All rights reserved.
+//  Created by hannah gaskins on 7/18/16.
+//  Copyright © 2016 hannah gaskins. All rights reserved.
 //
 
-
+#import "HotelsViewController.h"
+#import "AppDelegate.h"
+#import "Hotel.h"
+#import "RoomsViewController.h"
 
 @interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -45,6 +48,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,6 +58,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)setupTableView
@@ -73,30 +78,29 @@
                                                                attribute:NSLayoutAttributeLeading
                                                               multiplier:1.0
                                                                 constant:0.0];
-    
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.tableView
-                                                               attribute:NSLayoutAttributeTop
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
-                                                               attribute:NSLayoutAttributeTop
-                                                              multiplier:1.0
-                                                                constant:0.0];
+                                                           attribute:NSLayoutAttributeTop
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:self.view
+                                                           attribute:NSLayoutAttributeTop
+                                                          multiplier:1.0
+                                                            constant:0.0];
     
     NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:self.tableView
-                                                               attribute:NSLayoutAttributeTrailing
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
-                                                               attribute:NSLayoutAttributeTrailing
-                                                              multiplier:1.0
-                                                                constant:0.0];
+                                                                attribute:NSLayoutAttributeTrailing
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeTrailing
+                                                               multiplier:1.0
+                                                                 constant:0.0];
     
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.tableView
-                                                               attribute:NSLayoutAttributeBottom
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
-                                                               attribute:NSLayoutAttributeBottom
-                                                              multiplier:1.0
-                                                                constant:0.0];
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1.0
+                                                               constant:0.0];
     
     leading.active = YES;
     top.active = YES;
