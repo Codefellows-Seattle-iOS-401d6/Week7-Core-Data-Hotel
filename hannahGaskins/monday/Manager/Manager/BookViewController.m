@@ -14,6 +14,9 @@
 @interface BookViewController ()
 
 @property(strong, nonatomic) UITextField *nameField;
+@property(strong, nonatomic) UITextField *lastNameField;
+@property(strong, nonatomic) UITextField *emailField;
+
 
 @end
 
@@ -31,9 +34,7 @@
     [super viewDidLoad];
     
     [self setupBookViewController];
-    
     [self setupMessageLabel];
-    
     [self setupNameField];
 }
 
@@ -46,8 +47,7 @@
 - (void)setupNameField
 {
     self.nameField = [[UITextField alloc]init];
-    
-    self.nameField.placeholder = @"Please enter your name.";
+    self.nameField.placeholder = @"Please enter your first name.";
     self.nameField.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:self.nameField];
@@ -59,6 +59,7 @@
                                                                attribute:NSLayoutAttributeLeading
                                                               multiplier:1.0
                                                                 constant:20.0];
+    
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.nameField
                                                            attribute:NSLayoutAttributeTop
                                                            relatedBy:NSLayoutRelationEqual
@@ -74,11 +75,75 @@
                                                                 attribute:NSLayoutAttributeTrailing
                                                                multiplier:1.0
                                                                  constant:-20.0];
-    
+
     leading.active = YES;
     top.active = YES;
     trailing.active = YES;
     
+    self.lastNameField = [[UITextField alloc]init];
+    self.lastNameField.placeholder = @"Please enter your last name.";
+    self.lastNameField.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.lastNameField];
+    
+    NSLayoutConstraint *leadingLN = [NSLayoutConstraint constraintWithItem:self.lastNameField
+                                                               attribute:NSLayoutAttributeLeading
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self.view
+                                                               attribute:NSLayoutAttributeLeading
+                                                              multiplier:1.0
+                                                                constant:20.0];
+    NSLayoutConstraint *topLN = [NSLayoutConstraint constraintWithItem:self.lastNameField
+                                                           attribute:NSLayoutAttributeTop
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:self.view
+                                                           attribute:NSLayoutAttributeTop
+                                                          multiplier:1.0
+                                                            constant:109.2];
+    
+    NSLayoutConstraint *trailingLN = [NSLayoutConstraint constraintWithItem:self.lastNameField
+                                                                attribute:NSLayoutAttributeTrailing
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeTrailing
+                                                               multiplier:1.0
+                                                                 constant:-20.0];
+    
+    leadingLN.active = YES;
+    topLN.active = YES;
+    trailingLN.active = YES;
+    
+    self.emailField = [[UITextField alloc]init];
+    self.emailField.placeholder = @"Please enter your email 📧.";
+    self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.emailField];
+    
+    NSLayoutConstraint *leadingEM = [NSLayoutConstraint constraintWithItem:self.emailField
+                                                                 attribute:NSLayoutAttributeLeading
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self.view
+                                                                 attribute:NSLayoutAttributeLeading
+                                                                multiplier:1.0
+                                                                  constant:20.0];
+    
+    NSLayoutConstraint *topEM = [NSLayoutConstraint constraintWithItem:self.emailField
+                                                             attribute:NSLayoutAttributeTop
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1.0
+                                                              constant:134.4];
+
+    NSLayoutConstraint *trailingEM = [NSLayoutConstraint constraintWithItem:self.emailField
+                                                                  attribute:NSLayoutAttributeTrailing
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeTrailing
+                                                                 multiplier:1.0
+                                                                   constant:-20.0];
+    
+    leadingEM.active = YES;
+    topEM.active = YES;
+    trailingEM.active = YES;
     
 }
 
@@ -130,11 +195,10 @@
 
 - (void)saveButtonSelected:(UIBarButtonItem *)sender
 {
-    // TODO -
-    Reservation *reservation = [Reservation reservationWithStartDate:[NSDate date] endDate:self.endDate room:self.room];
+    Reservation *reservation = [Reservation reservationWithStartDate:self.startDate endDate:self.endDate room:self.room];
     
     self.room.reservation = reservation;
-    reservation.guest = [Guest guestWithName:self.nameField.text]; // passing in name to create guest name
+    reservation.guest = [Guest guestWithName:self.nameField.text lastName:self.lastNameField.text email:self.emailField.text]; // passing in name to create guest name
     
     NSError *error;
     [[NSObject managerContext] save:&error];
@@ -145,12 +209,6 @@
     else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-}
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 

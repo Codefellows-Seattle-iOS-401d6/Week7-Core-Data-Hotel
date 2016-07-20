@@ -14,7 +14,7 @@
 
 @property(strong, nonatomic)UIDatePicker *endPicker;
 // TODO!!!! Add startPicker
-
+@property(strong, nonatomic)UIDatePicker *startPicker;
 @end
 
 @implementation DateViewController
@@ -36,7 +36,7 @@
 
 - (void)setupDateViewController
 {
-    [self.navigationItem setTitle:@"Select End Date"];
+    [self.navigationItem setTitle:@"Select Start and End Dates"];
     
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonSelected:)]];
     
@@ -44,22 +44,25 @@
 
 - (void)setupDatePickers
 {
-    // TODO! set up constrints
+    self.startPicker = [[UIDatePicker alloc]init];
+    self.startPicker.datePickerMode = UIDatePickerModeDate;
+    self.startPicker.frame = CGRectMake(0.0, (84.0 + CGRectGetHeight(self.view.frame)/3), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)/3);
+    [self.view addSubview:self.startPicker];
+    
     self.endPicker = [[UIDatePicker alloc]init];
-    
     self.endPicker.datePickerMode = UIDatePickerModeDate;
-    
-    self.endPicker.frame = CGRectMake(0.0, 84.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-    
+    self.endPicker.frame = CGRectMake(0.0, 84.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)/3);
     [self.view addSubview:self.endPicker];
+    
     
 }
 
 -(void)doneButtonSelected:(UIBarButtonItem *)sender
 {
-    NSDate *endDate = [self.endPicker date];
+    NSDate *startDate = [self.endPicker date];
+    NSDate *endDate = [self.startPicker date];
     
-    if ([[NSDate date] timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate]) {
+    if ([startDate timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hmm..." message:@"Please make sure end date is in the future..." preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -72,10 +75,11 @@
         return;
     }
     
-    
     // instantiating availabilityVC
     AvailabilityViewController *availabilityViewController = [[AvailabilityViewController alloc]init];
     
+    availabilityViewController.startDate = startDate;
+
     availabilityViewController.endDate = endDate;
     
     [self.navigationController pushViewController:availabilityViewController animated:YES];

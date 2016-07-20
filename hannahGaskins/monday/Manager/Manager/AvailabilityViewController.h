@@ -11,5 +11,6 @@
 @interface AvailabilityViewController : UIViewController
 
 @property(strong, nonnull)NSDate *endDate;
+@property(strong, nonnull)NSDate *startDate;
 
 @end

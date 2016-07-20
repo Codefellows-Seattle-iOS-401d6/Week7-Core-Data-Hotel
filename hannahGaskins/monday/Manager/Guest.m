@@ -13,13 +13,16 @@
 
 @implementation Guest
 
-+ (instancetype)guestWithName:(NSString *)name
++ (instancetype)guestWithName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email
 {
-    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     Guest *guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:[NSObject managerContext]];
     
-    guest.name = name;
+    guest.firstName = firstName;
+    guest.lastName = lastName;
+    guest.email = email;
+    
     return guest;
 }
 

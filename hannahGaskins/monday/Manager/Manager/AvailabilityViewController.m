@@ -33,7 +33,7 @@
 - (void)setupTableView
 {
     self.tableView = [[UITableView alloc]init];
-    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -84,14 +84,23 @@
 
 - (NSArray *)datasource
 {
+    
     if (!_datasource) {
         AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
         
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, [NSDate date]];
+         request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate];
         
         NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:nil];
+        
+        for (Reservation *res in results) {
+            NSLog(@"%@", res.guest.firstName);
+            NSLog(@"%@", res.startDate);
+            NSLog(@"%@", res.endDate);
+            
+            
+        }
         
         NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
         
@@ -101,7 +110,7 @@
         
         NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
         
-        checkRequest.predicate = [NSPredicate predicateWithFormat:@"Not self IN %@", unavailableRooms];
+        checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
         _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
         
@@ -114,7 +123,6 @@
 - (void)loadView
 {
     [super loadView];
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
@@ -148,9 +156,8 @@
     
     BookViewController *bookViewController = [[BookViewController alloc]init];
     
-    // TODO!!!!!!!!!!!!!!!!!
     bookViewController.room = room;
-//    bookViewController.startDate = self.startDate;
+    bookViewController.startDate = self.startDate;
     bookViewController.endDate = self.endDate;
     
     [self.navigationController pushViewController:bookViewController animated:YES];
