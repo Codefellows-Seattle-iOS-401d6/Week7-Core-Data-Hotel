@@ -22,22 +22,6 @@
 
 @implementation HotelsViewController
 
-//- (NSArray *)datasource {
-//    if (!_datasource) {
-//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        NSManagedObjectContext *context = delegate.managedObjectContext;
-//        
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-//        NSError *fetchError;
-//        
-//        _datasource = [context executeFetchRequest:request error:&fetchError];
-//        
-//        if (fetchError) {
-//            NSLog(@"Core Data didn't fetch, try throwing it again");
-//        }
-//    }
-//    return _datasource;
-//}
 
 - (NSFetchedResultsController *)fetechedResultsController {
     if(!_fetchedResultsController) {
