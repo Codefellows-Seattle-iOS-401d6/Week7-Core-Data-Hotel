@@ -11,6 +11,9 @@
 #import "AppDelegate.h"
 #import "Room.h"
 #import "HotelsViewController.h"
+#import "AvailabilityViewController.h"
+#import "Room+CoreDataProperties.h"
+#import "Reservation.h"
 
 @interface RoomsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -36,25 +39,11 @@
     [self setupTableView];
     
     
-//    self.datasource = [NSMutableArray arrayWithArray:[_hotel.rooms allObjects]];
+    self.datasource = [NSMutableArray arrayWithArray:[_hotel.rooms allObjects]];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+    self.datasource = [self.datasource sortedArrayUsingDescriptors:@[sort]];
 }
 
-- (NSArray *)datasource
-{
-    if (!_datasource) {
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = delegate.managedObjectContext;
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-        NSError *fetchError;
-        _datasource = [context executeFetchRequest:request error:&fetchError];
-        
-        if (fetchError) {
-            NSLog(@"Error fetching from Core Data");
-        }
-    }
-    
-    return _datasource;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -69,9 +58,9 @@
     
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.tableView addSubview:self.tableView];
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:self.tableView];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeLeading
@@ -116,7 +105,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.datasource.count;
+    return [self.hotel.rooms count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,8 +116,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Room *rooms = self.datasource[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"Room number:%@ Beds:%@ Rate:%@", rooms.number, rooms.beds, rooms.rate];
+    Room *room = (Room *)[self.hotel.rooms allObjects][indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Room number %i (%i beds, $%0.2f per night", room.number.intValue, room.beds.intValue, room.rate.floatValue];
     
     return cell;
 }
@@ -152,39 +141,6 @@
     
     return headerView;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

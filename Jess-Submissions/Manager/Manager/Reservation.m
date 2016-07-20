@@ -2,16 +2,30 @@
 //  Reservation.m
 //  Manager
 //
-//  Created by Jess Malesh on 7/18/16.
+//  Created by Jessica Malesh on 7/19/16.
 //  Copyright © 2016 Jess Malesh. All rights reserved.
 //
 
 #import "Reservation.h"
 #import "Guest.h"
 #import "Room.h"
+#import "AppDelegate.h"
+#import "Reservation+CoreDataProperties.h"
+#import "NSManagedObjectContext+NSObject.h"
 
 @implementation Reservation
 
-// Insert code here to add functionality to your managed object subclass
++ (instancetype)reservationWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate room:(Room *)room
+{
+    
+    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:[NSManagedObjectContext managerContext]];
+    
+    reservation.startDate = startDate;
+    reservation.endDate = endDate;
+    reservation.room = room;
+    
+    return reservation;
+    
+}
 
 @end

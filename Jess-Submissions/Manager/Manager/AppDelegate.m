@@ -45,6 +45,7 @@
     self.navigationController = [[UINavigationController alloc]initWithRootViewController:self.viewController];
     
     self.window.rootViewController = self.navigationController;
+    
     [self.window makeKeyAndVisible];
 }
 
@@ -86,7 +87,7 @@
                 
                 rooms = hotel[@"rooms"];
                 
-                NSMutableSet *rooms = [[NSMutableSet alloc]init];
+                NSMutableSet *roomSet = [[NSMutableSet alloc]init];
                 
                 for (NSDictionary *room in rooms){
                     
@@ -98,10 +99,10 @@
                     newRoom.rate = room[@"rate"];
                     newRoom.hotel = newHotel;
                     
-                    [rooms addObject:newRoom];
+                    [roomSet addObject:newRoom];
                     
                 }
-                newHotel.rooms = rooms;
+                newHotel.rooms = roomSet;
             }
             
             NSError *saveError;
