@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "NSObject+NSManagedObject.h"
 
 @interface ManagerTests : XCTestCase
 
@@ -19,7 +20,6 @@
 - (void)setUp
 {
     [super setUp];
-    
     [self setContext:[NSManagedObjectContext managerContext]];
 }
 
@@ -31,12 +31,12 @@
 
 - (void)testContectCreation
 {
-    XCTestAssertNotNil(self.context, @"context should not be nil. check category implementation.");
+    XCTAssertNotNil(self.context, @"context should not be nil. Check category implementation");
 }
 
 - (void)testContextOnMainq
 {
-    XCTestAssertTrue(self.context.concurrencyType == NSMainQueueConcurrencyType, @"Contet should be created on the main Q");
+    XCTAssertTrue(self.context.concurrencyType == NSMainQueueConcurrencyType, @"Contet should be created on the main Q");
 }
 
 - (void)testCoreDataSave
@@ -45,12 +45,15 @@
     request.resultType = NSCountResultType;
     
     NSError *error;
-    NSArray *result = [self.contect executeFetchRequest:request error:&error];
+    NSArray *result = [self.context executeFetchRequest:request error:&error];
     NSNumber *count = result.firstObject;
     
-    XCTestAssertNil(error, @"error performing request.");
-    XCTestNotNil(result, @"Result array should not be nil");
-    XCTestAssertTrue(count.integerValue > 0,@"Number of objects should not be 0.");
+
+    XCTAssertNil(error, @"error performing request.");
+
+    XCTAssertNotNil(result, @"Result array should not be nil");
+    
+    XCTAssertTrue(count.integerValue > 0,@"Number of objects should not be 0.");
 }
 
 @end
