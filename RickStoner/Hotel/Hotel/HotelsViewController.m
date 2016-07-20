@@ -23,10 +23,10 @@
 @implementation HotelsViewController
 
 
-- (NSFetchedResultsController *)fetechedResultsController {
+- (NSFetchedResultsController *)fetchedResultsController {
     if(!_fetchedResultsController) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        request.sortDescriptors =@[[NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES]];
+        request.sortDescriptors =@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
         
         _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[NSManagedObject managedContext] sectionNameKeyPath:nil cacheName:nil];
         _fetchedResultsController.delegate = self;
@@ -196,7 +196,7 @@
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         default:
             break;

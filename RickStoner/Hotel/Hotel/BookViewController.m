@@ -43,6 +43,17 @@
 
 
 - (void)saveButtonSelected:(UIBarButtonItem *)sender {
+    if (self.firstNameField.text == nil || self.lastNameField.text == nil || self.emailField.text == nil) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Fields" message:@"Please ensure all fields are filled out" preferredStyle: UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        
+        [alert addAction:okAction];
+        
+        [self presentViewController:alert animated:YES completion: nil];
+        
+        return;
+    }
     Reservation *reservation = [Reservation reservationWithStartDate:self.startDate endDate:self.endDate room:self.room];
     
     self.room.reservation = reservation;

@@ -38,6 +38,11 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
+-(void)setDatasource:(NSArray *)datasource{
+    _datasource = datasource;
+    [self.tableView reloadData];
+}
+
 - (void)setupTableView {
     
     self.tableView = [[UITableView alloc]init];
@@ -101,7 +106,8 @@
     }
     
     Reservation *reservation = self.datasource[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"Name: %@ %@, Hotel %@", reservation.guest.firstName, reservation.guest.lastName, reservation.room.hotel.room];
+    cell.textLabel.text = [NSString stringWithFormat:@"Name: %@ %@, Hotel: %@", reservation.guest.firstName, reservation.guest.lastName, reservation.room.hotel.name];
+    NSLog(@"%@", reservation.room.hotel.name);
     
     return cell;
 }
@@ -125,7 +131,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchText = searchBar.text;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-    request.predicate = [NSPredicate predicateWithFormat:@"guest.name LIKE %@", searchText];
+    request.predicate = [NSPredicate predicateWithFormat:@"guest.firstName guest.lastName LIKE %@", searchText];
     
     NSError *error;
     NSArray *results = [[NSManagedObject managedContext] executeFetchRequest:request error:&error];
@@ -133,7 +139,9 @@
         NSLog(@"Error fetching desired request. Error: %@", error);
     } else {
         self.datasource = results;
+        
     }
+    searchBar.text = @"";
 }
 
 
