@@ -11,31 +11,49 @@
 #import "Hotel.h"
 #import "Room.h"
 #import "RoomsViewController.h"
+#import "NSManagedObject+NSManagedObjectContextCategory.h"
 
-@interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) NSArray *datasource;
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
 @implementation HotelsViewController
 
-- (NSArray *)datasource {
-    if (!_datasource) {
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = delegate.managedObjectContext;
-        
+//- (NSArray *)datasource {
+//    if (!_datasource) {
+//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//        NSManagedObjectContext *context = delegate.managedObjectContext;
+//        
+//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+//        NSError *fetchError;
+//        
+//        _datasource = [context executeFetchRequest:request error:&fetchError];
+//        
+//        if (fetchError) {
+//            NSLog(@"Core Data didn't fetch, try throwing it again");
+//        }
+//    }
+//    return _datasource;
+//}
+
+- (NSFetchedResultsController *)fetechedResultsController {
+    if(!_fetchedResultsController) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        NSError *fetchError;
+        request.sortDescriptors =@[[NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES]];
         
-        _datasource = [context executeFetchRequest:request error:&fetchError];
+        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[NSManagedObject managedContext] sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultsController.delegate = self;
+        NSError *error;
+        [_fetchedResultsController performFetch:&error];
         
-        if (fetchError) {
-            NSLog(@"Core Data didn't fetch, try throwing it again");
+        if (error) {
+            NSLog(@"Error with hotel fetch. Error: %@", error.localizedDescription);
         }
     }
-    return _datasource;
+    return _fetchedResultsController;
 }
 
 - (void)loadView {
@@ -105,7 +123,12 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datasource.count;
+    if([[self.fetchedResultsController sections]count] > 0){
+        id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections]objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,10 +138,22 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Hotel *hotel = self.datasource[indexPath.row];
+    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = hotel.name;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [[NSManagedObject managedContext]deleteObject:hotel];
+        [[NSManagedObject managedContext]save:nil];
+    }
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
 }
 
 
@@ -138,10 +173,9 @@
     return headerView;
 }
 
-// Segue type method wihtout using segue
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Hotel *hotel = self.datasource[indexPath.row];
+    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
     RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
     
     roomsViewController.hotel = hotel;
@@ -149,5 +183,40 @@
     [self.navigationController pushViewController:roomsViewController animated:YES];
 }
 
+#pragma mark - FetchedResultsControllerDelegate
+
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        default:
+            break;
+    }
+}
 
 @end

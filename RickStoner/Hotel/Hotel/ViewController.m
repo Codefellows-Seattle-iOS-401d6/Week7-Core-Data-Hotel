@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupViewController];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -51,7 +52,7 @@
 }
 
 - (void)setupViewController {
-    [self.navigationItem setTitle:@"Hotel Managment"];
+    [self.navigationItem setTitle:@"Book Hotel"];
 }
 
 - (void)setupCustomLayout {
