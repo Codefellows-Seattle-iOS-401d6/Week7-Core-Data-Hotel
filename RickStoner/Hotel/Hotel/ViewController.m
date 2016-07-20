@@ -33,6 +33,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Guest"];
+    NSError *error;
+    
+    NSArray *guest = [context executeFetchRequest:request error:&error];
+    if(error){
+        NSLog(@"Error with Guest fetch request. Error: %@", error);
+    }
+    
+    NSLog(@"Guestcount: %li", guest.count);
+    
+}
+
 - (void)setupViewController {
     [self.navigationItem setTitle:@"Hotel Managment"];
 }

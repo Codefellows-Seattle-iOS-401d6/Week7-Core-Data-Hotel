@@ -124,7 +124,6 @@
 - (void)doneButtonSelected:(UIBarButtonItem *)sender{
     NSDate *startDate = [self.startPicker date];
     NSDate *endDate = [self.endPicker date];
-    NSLog(@"%f", [startDate timeIntervalSinceNow]);
     
     if ([startDate timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate] || [startDate timeIntervalSinceNow] < -120 ) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Dates" message:@"Please ensure a valid start date and end date." preferredStyle: UIAlertControllerStyleAlert];

@@ -55,8 +55,6 @@
     } else {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-    
-    
 }
 
 - (void)setupMessageLabel {
@@ -111,6 +109,10 @@
     [self.view addSubview:self.lastNameField];
     [self.view addSubview:self.emailField];
     
+    self.firstNameField.translatesAutoresizingMaskIntoConstraints = NO;
+    self.lastNameField.translatesAutoresizingMaskIntoConstraints = NO;
+    self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
+    
     NSLayoutConstraint *leadingFirst = [NSLayoutConstraint constraintWithItem: self.firstNameField
                                                               attribute:NSLayoutAttributeLeading
                                                                relatedBy:NSLayoutRelationEqual
@@ -157,7 +159,7 @@
                                                                    toItem:self.view
                                                                 attribute:NSLayoutAttributeTop
                                                                multiplier:1.0
-                                                                 constant:109.0];
+                                                                 constant:144.0];
     
     NSLayoutConstraint *leadingEmail = [NSLayoutConstraint constraintWithItem: self.emailField
                                                                     attribute:NSLayoutAttributeLeading
@@ -181,7 +183,7 @@
                                                                    toItem:self.view
                                                                 attribute:NSLayoutAttributeTop
                                                                multiplier:1.0
-                                                                 constant:84.0];
+                                                                 constant:204.0];
     
     leadingFirst.active = YES;
     trailingFirst.active = YES;
