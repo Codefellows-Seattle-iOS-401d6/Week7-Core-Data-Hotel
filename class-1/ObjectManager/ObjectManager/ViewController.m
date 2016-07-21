@@ -50,7 +50,7 @@
     AppDelegate  *delegate = [[UIApplication sharedApplication]delegate];
     
     
-    NSManagedObjectContext *context = [delegate.myManagedObjectContext managedObjectContext];
+    NSManagedObjectContext *context = delegate.managedObjectContext;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: @"Guest"];
     NSArray *guests = [context executeFetchRequest: request error: nil];
     

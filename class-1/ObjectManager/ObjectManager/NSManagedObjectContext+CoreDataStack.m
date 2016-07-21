@@ -13,7 +13,7 @@
 
 
 @implementation NSManagedObjectContext (CoreDataStack)
-- (void) loadDataFromJSON {
+/* - (void) loadDataFromJSON {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
     NSError *error;
     
@@ -227,5 +227,5 @@
         }
     }
 }
-
+*/
 @end

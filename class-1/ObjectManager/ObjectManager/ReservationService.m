@@ -25,7 +25,8 @@
 {
     
 AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+
+NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
         
 request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", endDate, [NSDate date]];
     
@@ -33,7 +34,7 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
 //    request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", endDate, startDate];
 //
     
-        NSArray *results = [[delegate.myManagedObjectContext managedObjectContext] executeFetchRequest:request error:nil];
+        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:nil];
         
         NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
         for (Reservation *reservation in results){
@@ -44,7 +45,7 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
         
         checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
-        return [[delegate.myManagedObjectContext managedObjectContext] executeFetchRequest:checkRequest error:nil];
+        return [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
 }
 
 - (NSFetchedResultsController *)showAllReservations: (NSFetchRequest *)request

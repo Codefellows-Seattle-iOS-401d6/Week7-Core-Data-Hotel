@@ -18,6 +18,8 @@
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
 
-    return [delegate.myManagedObjectContext managedObjectContext];
+//    return [delegate.myManagedObjectContext managedObjectContext];
+    return delegate.managedObjectContext;
+
 }
 @end
