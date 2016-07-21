@@ -21,31 +21,9 @@
 
 @implementation HotelsViewController
 
-//- (NSArray *)datasource
-//{
-//    if (!_datasource) {
-//        
-//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        NSManagedObjectContext *context = delegate.managedObjectContext;
-//        
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-//        
-//        NSError *fetchError;
-//        
-//        _datasource = [context executeFetchRequest:request
-//                                             error:&fetchError];
-//        
-//        if (fetchError) {
-//            NSLog(@"Error fetching from Core Data.");
-//        }
-//    }
-//    
-//    return _datasource;
-//}
-
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (_fetchedResultsController) {
+    if (!_fetchedResultsController) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
         
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]; // sortDescripters is an array as the property expects that

@@ -13,7 +13,7 @@
 
 @implementation Guest
 
-+ (instancetype)guestWithName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email
++ (instancetype)guestWithName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email phone:(NSString *)phone
 {
 //    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
@@ -22,6 +22,7 @@
     guest.firstName = firstName;
     guest.lastName = lastName;
     guest.email = email;
+    guest.phone = phone;
     
     return guest;
 }

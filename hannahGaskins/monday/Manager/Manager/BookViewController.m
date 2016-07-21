@@ -11,12 +11,14 @@
 
 #import "NSObject+NSManagedObject.h"
 #import "ReservationService.h"
+#import "Flurry.h"
 
 @interface BookViewController ()
 
 @property(strong, nonatomic) UITextField *nameField;
 @property(strong, nonatomic) UITextField *lastNameField;
 @property(strong, nonatomic) UITextField *emailField;
+@property(strong, nonatomic) UITextField *phoneField;
 
 
 @end
@@ -146,6 +148,39 @@
     topEM.active = YES;
     trailingEM.active = YES;
     
+    
+    self.phoneField = [[UITextField alloc]init];
+    self.phoneField.placeholder = @"Please enter your phone.";
+    self.phoneField.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.phoneField];
+    
+    NSLayoutConstraint *leadingPhone = [NSLayoutConstraint constraintWithItem:self.phoneField
+                                                                 attribute:NSLayoutAttributeLeading
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self.view
+                                                                 attribute:NSLayoutAttributeLeading
+                                                                multiplier:1.0
+                                                                  constant:20.0];
+    NSLayoutConstraint *topPhone = [NSLayoutConstraint constraintWithItem:self.phoneField
+                                                             attribute:NSLayoutAttributeTop
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1.0
+                                                              constant:159.2];
+    
+    NSLayoutConstraint *trailingPhone = [NSLayoutConstraint constraintWithItem:self.phoneField
+                                                                  attribute:NSLayoutAttributeTrailing
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeTrailing
+                                                                 multiplier:1.0
+                                                                   constant:-20.0];
+    
+    leadingPhone.active = YES;
+    topPhone.active = YES;
+    trailingPhone.active = YES;
+    
 }
 
 - (void)setupMessageLabel
@@ -196,19 +231,35 @@
 
 - (void)saveButtonSelected:(UIBarButtonItem *)sender
 {
+    
+    [Flurry logEvent:@"saveButtonSelected"];
+
+    
     __weak typeof(self) weakSelf = self; // for retain cycle prevention
    
     [ReservationService bookRoomMethod:self.endDate
                              startDate:self.startDate
                                  email:self.room
-                             nameField:self.nameField
+                        firstNameField:self.nameField
                          lastNameField:self.lastNameField
                             emailField:self.emailField
-                            completion: ^ {
-                                
+                            phoneField:self.phoneField
+                            completion:^{
                                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                                
                             }];
+    
+//    [ReservationService bookRoomMethod:self.endDate
+//                             startDate:self.startDate
+//                                 email:self.room
+//                             nameField:self.nameField
+//                         lastNameField:self.lastNameField
+//                            emailField:self.emailField
+//                            phoneField:self.phoneField
+//                            completion: ^ {
+//                                
+//                                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//                                
+//                            }];
 }
 
 

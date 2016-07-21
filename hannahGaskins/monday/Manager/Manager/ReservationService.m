@@ -56,13 +56,13 @@
 
 // method to book room
 
-+ (void)bookRoomMethod:(NSDate *)endDate startDate:(NSDate *)startDate email:(Room *)room nameField:(UITextField *)nameField lastNameField:(UITextField *)lastNameField emailField:(UITextField *)emailField completion:(ReservationServiceCompletion)completion
++ (void)bookRoomMethod:(NSDate *)endDate startDate:(NSDate *)startDate email:(Room *)room firstNameField:(UITextField *)nameField lastNameField:(UITextField *)lastNameField emailField:(UITextField *)emailField phoneField:(UITextField *)phoneField completion:(ReservationServiceCompletion)completion
 {
     // abstract away: creating reservation name fields
     Reservation *reservation = [Reservation reservationWithStartDate:startDate endDate:endDate room:room];
     
     room.reservation = reservation;
-    reservation.guest = [Guest guestWithName:nameField.text lastName:lastNameField.text email:emailField.text]; // passing in name to create guest name
+    reservation.guest = [Guest guestWithName:nameField.text lastName:lastNameField.text email:emailField.text phone:phoneField.text]; // passing in name to create guest name
     
     NSError *error;
     [[NSObject managerContext] save:&error];
@@ -72,7 +72,6 @@
     }
     
     else {
-//        [self.navigationController popToRootViewControllerAnimated:YES];
         completion();
     }
 }

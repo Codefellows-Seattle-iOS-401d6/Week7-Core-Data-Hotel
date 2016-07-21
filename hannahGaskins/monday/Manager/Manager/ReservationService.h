@@ -20,6 +20,7 @@ typedef void(^ReservationServiceCompletion)();
 // 3 methods//
 
 + (NSArray *)avilableRoomMethod:(NSDate *)endDate startDate:(NSDate *)startDate;
-+ (void)bookRoomMethod:(NSDate *)endDate startDate:(NSDate *)startDate email:(Room *)room nameField:(UITextField *)nameField lastNameField:(UITextField *)lastNameField emailField:(UITextField *)emailField completion:(ReservationServiceCompletion)completion;
+
++ (void)bookRoomMethod:(NSDate *)endDate startDate:(NSDate *)startDate email:(Room *)room firstNameField:(UITextField *)nameField lastNameField:(UITextField *)lastNameField emailField:(UITextField *)emailField phoneField:(UITextField *)phoneField completion:(ReservationServiceCompletion)completion;
 
 @end

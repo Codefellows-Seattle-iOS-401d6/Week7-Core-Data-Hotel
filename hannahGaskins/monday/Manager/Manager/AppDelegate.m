@@ -12,6 +12,7 @@
 #import "Room.h"
 #import "Reservation.h"
 #import "Guest.h"
+#import "Flurry.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +28,11 @@
 {
     [self setupRootViewController];
     [self bootstrapApp];
+    
+    [Flurry startSession:@"F6CXYJSMQGXG59RQP5X8"]; // Flurry Application key
+    
+    // testing
+    [Flurry logEvent:@"Launched App"];
     
     return YES;
 }
@@ -155,10 +161,14 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Manager.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption: [NSNumber numberWithBool:YES]};
+    
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -171,6 +181,7 @@
     
     return _persistentStoreCoordinator;
 }
+
 
 
 - (NSManagedObjectContext *)managedObjectContext {

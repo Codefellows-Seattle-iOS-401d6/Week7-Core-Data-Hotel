@@ -2,7 +2,7 @@
 //  Reservation+CoreDataProperties.m
 //  Manager
 //
-//  Created by hannah gaskins on 7/18/16.
+//  Created by hannah gaskins on 7/21/16.
 //  Copyright © 2016 hannah gaskins. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
