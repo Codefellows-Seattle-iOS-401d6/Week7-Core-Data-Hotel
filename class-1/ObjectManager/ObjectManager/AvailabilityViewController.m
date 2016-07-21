@@ -12,6 +12,7 @@
 #import "Room.h"
 #import "Hotel.h"
 #import "ReserveViewController.h"
+#import "ReservationService.h"
 
 @interface AvailabilityViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,25 +24,28 @@
 @implementation AvailabilityViewController
 
 - (NSArray *)datasource {
-    if (!_datasource ) {
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-        
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, [NSDate date]];
+    ReservationService *operator = [[ReservationService alloc]init];
     
-        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:nil];
+    if (!_datasource ) {
+//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+//        
+//        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, [NSDate date]];
+//    
+//        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:nil];
+//        
+//        NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
+//        for (Reservation *reservation in results){
+//            [unavailableRooms addObject:reservation.room];
+//        }
+//        
+//        NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+//        
+//        checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
+//        
+//        _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
         
-        NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
-        for (Reservation *reservation in results){
-            [unavailableRooms addObject:reservation.room];
-        }
-        
-        NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-        
-        checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
-        
-        _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
-                                                
+        _datasource = [operator checkAvailability:self.endDate startDate:self.startDate];
     }
     
     return _datasource;
@@ -124,7 +128,7 @@
     reserveViewController.room = room;
     
 //    fixme
-//    reserveViewController.startDate = self.startDate;
+    reserveViewController.startDate = self.startDate;
     reserveViewController.endDate = self.endDate;
     [self.navigationController pushViewController:reserveViewController animated:YES];
 

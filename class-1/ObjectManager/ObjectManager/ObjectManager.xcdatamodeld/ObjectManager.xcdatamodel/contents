@@ -6,7 +6,7 @@
         <attribute name="lastName" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="payment" attributeType="String" syncable="YES"/>
-        <relationship name="reservation" maxCount="1" deletionRule="Nullify" destinationEntity="Reservation" inverseName="guest" inverseEntity="Reservation" syncable="YES"/>
+        <relationship name="reservation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reservation" inverseName="guest" inverseEntity="Reservation" syncable="YES"/>
     </entity>
     <entity name="Hotel" representedClassName="Hotel" syncable="YES">
         <attribute name="location" attributeType="String" syncable="YES"/>
@@ -17,7 +17,7 @@
     <entity name="Reservation" representedClassName="Reservation" syncable="YES">
         <attribute name="endDate" attributeType="Date" syncable="YES"/>
         <attribute name="startDate" attributeType="Date" syncable="YES"/>
-        <relationship name="guest" maxCount="1" deletionRule="Nullify" destinationEntity="Guest" inverseName="reservation" inverseEntity="Guest" syncable="YES"/>
+        <relationship name="guest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guest" inverseName="reservation" inverseEntity="Guest" syncable="YES"/>
         <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="reservation" inverseEntity="Room" syncable="YES"/>
     </entity>
     <entity name="Room" representedClassName="Room" syncable="YES">
@@ -30,7 +30,7 @@
     <elements>
         <element name="Guest" positionX="225" positionY="-792" width="128" height="135"/>
         <element name="Hotel" positionX="-450" positionY="-792" width="128" height="103"/>
-        <element name="Reservation" positionX="-18" positionY="-792" width="128" height="103"/>
+        <element name="Reservation" positionX="-18" positionY="-792" width="128" height="105"/>
         <element name="Room" positionX="-243" positionY="-792" width="128" height="118"/>
     </elements>
 </model>

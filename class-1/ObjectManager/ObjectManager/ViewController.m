@@ -10,6 +10,8 @@
 #import "HotelsViewController.h"
 #import "AppDelegate.h"
 #import "DateViewController.h"
+#import "LookupViewController.h"
+#import "NSManagedObjectContext+CoreDataStack.h"
 
 @import CoreData;
 
@@ -22,7 +24,7 @@
 - (void)loadView {
     [super loadView];
     [self setupCustomLayout];
-    [self.view setBackgroundColor:[UIColor redColor]];
+    [self.view setBackgroundColor:[UIColor grayColor]];
 }
 
 
@@ -47,7 +49,8 @@
     [super viewWillAppear:animated];
     AppDelegate  *delegate = [[UIApplication sharedApplication]delegate];
     
-    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    NSManagedObjectContext *context = [delegate.myManagedObjectContext managedObjectContext];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: @"Guest"];
     NSArray *guests = [context executeFetchRequest: request error: nil];
     
@@ -60,24 +63,24 @@
     
     UIButton *browseButton = [[UIButton alloc]init];
     UIButton *reserveButton = [[UIButton alloc]init];
-    UIButton *lookupButton = [[UIButton alloc]init];
+    UIButton *searchButton = [[UIButton alloc]init];
     
     [browseButton setTitle: @"browse" forState:UIControlStateNormal];
     [reserveButton setTitle: @"reserve" forState:UIControlStateNormal];
 
-    [lookupButton setTitle: @"lookup" forState:UIControlStateNormal];
+    [searchButton setTitle: @"lookup" forState:UIControlStateNormal];
     
     [browseButton setBackgroundColor:[UIColor colorWithRed: 1.0 green: 1.0 blue: 0.76 alpha: 1.0]];
     [reserveButton setBackgroundColor:[UIColor colorWithRed: 1.0 green: 0.91 blue: 0.76 alpha: 1.0]];
-    [lookupButton setBackgroundColor:[UIColor colorWithRed: 0.85 green: 0.91 blue: 0.76 alpha: 1.0]];
+    [searchButton setBackgroundColor:[UIColor colorWithRed: 0.85 green: 0.91 blue: 0.76 alpha: 1.0]];
     
     [browseButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [reserveButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [lookupButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [searchButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     
     [browseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [reserveButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [lookupButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [searchButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     
     NSLayoutConstraint *browseButtonLeading = [NSLayoutConstraint constraintWithItem:browseButton
@@ -89,13 +92,13 @@
                                                attribute:NSLayoutAttributeTop
                                                relatedBy:NSLayoutRelationEqual toItem:self.view
                                                attribute:NSLayoutAttributeTop
-                                              multiplier:1.0 constant:0.0];
+                                              multiplier:1.0 constant:70.0];
     NSLayoutConstraint *browseButtonTrailing = [NSLayoutConstraint constraintWithItem:browseButton
                                                attribute:NSLayoutAttributeTrailing
                                                relatedBy:NSLayoutRelationEqual toItem:self.view
                                                attribute:NSLayoutAttributeTrailing
                                               multiplier:1.0 constant:0.0];
-    NSLayoutConstraint *browseButtonHeight = [NSLayoutConstraint constraintWithItem:browseButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute: NSLayoutAttributeHeight multiplier:0.5 constant:1.0];
+    NSLayoutConstraint *browseButtonHeight = [NSLayoutConstraint constraintWithItem:browseButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute: NSLayoutAttributeHeight multiplier:0.25 constant:1.0];
 
     [self.view addSubview:browseButton];
     
@@ -115,13 +118,13 @@
                                                                        attribute:NSLayoutAttributeTop
                                                                        relatedBy:NSLayoutRelationEqual toItem:browseButton
                                                                        attribute:NSLayoutAttributeBottom
-                                                                      multiplier:1.0 constant:0.0];
+                                                                      multiplier:1.0 constant:6.0];
     NSLayoutConstraint *reserveButtonTrailing = [NSLayoutConstraint constraintWithItem:reserveButton
                                                                             attribute:NSLayoutAttributeTrailing
                                                                             relatedBy:NSLayoutRelationEqual toItem:self.view
                                                                             attribute:NSLayoutAttributeTrailing
                                                                            multiplier:1.0 constant:0.0];
-    NSLayoutConstraint *reserveButtonHeight = [NSLayoutConstraint constraintWithItem:reserveButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute: NSLayoutAttributeHeight multiplier:0.5 constant:1.0];
+    NSLayoutConstraint *reserveButtonHeight = [NSLayoutConstraint constraintWithItem:reserveButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute: NSLayoutAttributeHeight multiplier:0.25 constant:0.0];
     
     [self.view addSubview:reserveButton];
     
@@ -132,6 +135,32 @@
     
     [reserveButton addTarget:self action:@selector(reserveButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
 
+    NSLayoutConstraint *searchButtonLeading = [NSLayoutConstraint constraintWithItem:searchButton
+                                                                            attribute:NSLayoutAttributeLeading
+                                                                            relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                                            attribute:NSLayoutAttributeLeading
+                                                                           multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *searchButtonTop = [NSLayoutConstraint constraintWithItem:searchButton
+                                                                        attribute:NSLayoutAttributeTop
+                                                                        relatedBy:NSLayoutRelationEqual toItem:reserveButton
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                       multiplier:1.0 constant:6.0];
+    NSLayoutConstraint *searchButtonTrailing = [NSLayoutConstraint constraintWithItem:searchButton
+                                                                             attribute:NSLayoutAttributeTrailing
+                                                                             relatedBy:NSLayoutRelationEqual toItem:self.view
+                                                                             attribute:NSLayoutAttributeTrailing
+                                                                            multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *searchButtonHeight = [NSLayoutConstraint constraintWithItem:searchButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute: NSLayoutAttributeHeight multiplier:0.25 constant:0.0];
+    
+    [self.view addSubview:searchButton];
+    
+    searchButtonTop.active = YES;
+    searchButtonLeading.active = YES;
+    searchButtonTrailing.active = YES;
+    searchButtonHeight.active = YES;
+    
+    [searchButton addTarget:self action:@selector(searchButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
 
 }
 
@@ -147,8 +176,9 @@
     [self.navigationController pushViewController:[DateViewController new] animated:YES];
     
 }
--(void) lookupButtonSelected: (UIButton *)sender{
-    
+-(void) searchButtonSelected: (UIButton *)sender{
+    [self.navigationController pushViewController:[LookupViewController new] animated:YES];
+
 }
 
 @end

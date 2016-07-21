@@ -57,7 +57,8 @@
     dayComponent.day = days.longValue;
     return [theCalendar dateByAddingComponents:dayComponent toDate:dateOnly options:0];
 }
-- (NSDate *)dateDaysFromDate: (NSNumber *)days date:(NSDate *)fromDate{
+- (NSDate *)dateDaysFromDate: (NSNumber *)days date:(NSDate *)fromDate
+{
     NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     
@@ -125,7 +126,8 @@
     AvailabilityViewController *availabilityViewController = [[AvailabilityViewController alloc] init];
     
     availabilityViewController.endDate = endDate;
-    
+    availabilityViewController.startDate = startDate;
+
     [self.navigationController pushViewController:availabilityViewController animated:YES];
     
     

@@ -11,6 +11,7 @@
 #import "Room.h"
 #import "Guest.h"
 #import "Reservation.h"
+#import "ReservationService.h"
 
 #import "NSObject+NSManagedObjectContext.h"
 
@@ -169,23 +170,34 @@
 
 
 - (void) saveButtonSelected:(UIBarButtonItem *)sender{
+    ReservationService *operator = [[ReservationService alloc]init];
     
-    Reservation *reservation = [Reservation reservationWithStartDate:[NSDate date] endDate:self.endDate room:self.room];
+    Guest *guest = [Guest guestWithNameAndEmail:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text payment: self.paymentField.text notes: self.notesField.text];
     
-    self.room.reservation = reservation;
-    
-    reservation.guest = [Guest guestWithNameAndEmail:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text payment: self.paymentField.text notes: self.notesField.text];
-    
-    NSError *error;
-    [[NSObject managerContext] save: &error];
-    
-    if (error) {
-        NSLog(@"Save error: %@",error);
-    }
-    
-    else {
+    BOOL success = [operator bookRoomStarting:self.startDate endDate:self.endDate room:self.room guest:guest];
+    if(success)
+    {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+    
+    
+//    Reservation *reservation = [Reservation reservationWithStartDate:[NSDate date] endDate:self.endDate room:self.room];
+    
+//    self.room.reservation = reservation;
+//    
+//    reservation.guest = [Guest guestWithNameAndEmail:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text payment: self.paymentField.text notes: self.notesField.text];
+    
+//    NSError *error;
+//    [[NSObject managerContext] save: &error];
+//    
+//    
+//    if (error) {
+//        NSLog(@"Save error: %@",error);
+//    }
+//    
+//    else {
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }
     
 }
 /*
