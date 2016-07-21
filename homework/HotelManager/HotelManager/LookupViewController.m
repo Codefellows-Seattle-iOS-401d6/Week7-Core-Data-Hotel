@@ -152,7 +152,7 @@
 //    Reservation *reservation = self.datasource[indexPath.row];
     Reservation *reservation = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Name: %@, Hotel: %@", reservation.guest.name, reservation.room.hotel.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"Name: %@, Hotel: %@", reservation.guest.firstName, reservation.room.hotel.name];
     return cell;
 }
 
@@ -191,9 +191,10 @@
 {
     NSString *searchText = searchBar.text;
 
-    self.request.predicate = [NSPredicate predicateWithFormat:@"guest.email == %@", searchText];
-    
+//    self.request.predicate = [NSPredicate predicateWithFormat:@"guest.email == %@", searchText];
     NSError *error;
+    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"guest.email == %@", searchText];
+
     [self.fetchedResultsController performFetch:&error];
     if (error) {
         NSLog(@"Error: %@", error.localizedDescription);

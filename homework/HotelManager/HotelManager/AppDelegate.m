@@ -13,6 +13,7 @@
 //#import "Reservation.h"
 //#import "Guest.h"
 #import "AppDelegate+AppBootStrap.h"
+#import "Flurry.h"
 
 
 @interface AppDelegate ()
@@ -29,6 +30,9 @@
 {
     [self setupRootViewController];
     [self loadDataFromJSON];
+    [Flurry startSession:@"DQDVZF7CH42WFBFBVZQW"];
+    
+    [Flurry logEvent:@"Launched Application"];
     return YES;
 }
 
@@ -141,7 +145,9 @@
     
     //NSInMemoryStoreType -> can change NSSQLiteStoreType to this to avoid having to kill your app to test Core Data
     
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption: [NSNumber numberWithBool:NO]};
+    
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";

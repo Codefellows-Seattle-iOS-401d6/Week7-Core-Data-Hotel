@@ -55,7 +55,7 @@
 -(NSFetchedResultsController *)findAllReservations:(NSFetchRequest *)request
 {
     request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"guest.name" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"guest.firstName" ascending:YES]];
     
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[NSManagedObjectContext managerContext] sectionNameKeyPath:nil cacheName:nil];
     

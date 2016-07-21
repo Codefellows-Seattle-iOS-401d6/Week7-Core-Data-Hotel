@@ -16,7 +16,7 @@
 {
     Guest *guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:[NSManagedObjectContext managerContext]];
     
-    guest.name = name;
+    guest.firstName = name;
     guest.lastName = lastName;
     guest.email = email;
     

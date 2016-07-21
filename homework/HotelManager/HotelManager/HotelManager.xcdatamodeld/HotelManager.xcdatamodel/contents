@@ -10,7 +10,7 @@
         <attribute name="location" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="stars" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="room" toMany="YES" deletionRule="Nullify" destinationEntity="Room" inverseName="hotel" inverseEntity="Room" syncable="YES"/>
+        <relationship name="room" toMany="YES" deletionRule="Cascade" destinationEntity="Room" inverseName="hotel" inverseEntity="Room" syncable="YES"/>
     </entity>
     <entity name="Reservation" representedClassName="Reservation" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
