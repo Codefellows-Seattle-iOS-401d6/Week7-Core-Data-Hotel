@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D999E9747D2540CC2AD7071CC73D8BB60BC6E956",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D999E9747D2540CC2AD7071CC73D8BB60BC6E956" : 0,
+    "EB79EE5254103E98E9FA292F452FAD5F00FD61B2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7F693746-02E8-4B37-A53E-0AB442D1B4B3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D999E9747D2540CC2AD7071CC73D8BB60BC6E956" : "Week7-Core-Data-Hotel\/",
+    "EB79EE5254103E98E9FA292F452FAD5F00FD61B2" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Manager",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Manager\/Manager.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/erinroby\/Week7-Core-Data-Hotel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D999E9747D2540CC2AD7071CC73D8BB60BC6E956"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/erinroby\/iOS-401-class-5.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EB79EE5254103E98E9FA292F452FAD5F00FD61B2"
+    }
+  ]
+}
