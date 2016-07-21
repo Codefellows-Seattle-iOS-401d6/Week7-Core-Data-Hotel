@@ -12,7 +12,7 @@
 #import "RoomsViewController.h"
 #import "NSObject+NSObjectContext.h"
 
-@interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 //@property (strong, nonatomic) NSArray *datasource;
 @property (strong, nonatomic) UITableView *tableView;
@@ -46,7 +46,7 @@
 {
     if (!_fetchedResultsController)
     {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotels"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
         
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     
@@ -116,6 +116,10 @@
     if ([[self.fetchedResultsController sections]count] > 0)
     {
         id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        
+        return [sectionInfo numberOfObjects];
+    } else {
+        return 0;
     }
 }
 
@@ -126,10 +130,26 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Hotel *hotel = self.datasource[indexPath.row];
+    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = hotel.name;
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        [[NSObject managerContext]deleteObject:hotel];
+        [[NSObject managerContext]save:nil];
+    }
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 #pragma mark - UITableViewDelegate
@@ -149,12 +169,53 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Hotel *hotel = self.datasource[indexPath.row];
+    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
     RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
     
     roomsViewController.hotel = hotel;
     [self.navigationController pushViewController:roomsViewController animated:YES];
 }
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(nonnull id)anObject atIndexPath:(nullable NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(nullable NSIndexPath *)newIndexPath
+{
+    switch (type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        default:
+            break;
+    }
+}
+
+
 
 @end
 
