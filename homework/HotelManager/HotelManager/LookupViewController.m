@@ -1,39 +1,29 @@
 //
-//  HotelsViewController.m
+//  LookupViewController.m
 //  HotelManager
 //
-//  Created by Sung Kim on 7/18/16.
+//  Created by Sung Kim on 7/20/16.
 //  Copyright © 2016 Sung Kim. All rights reserved.
 //
 
-#import "HotelsViewController.h"
+#import "LookupViewController.h"
+#import "Reservation.h"
+#import "Guest.h"
+#import "Room.h"
 #import "Hotel.h"
-//#import "AppDelegate.h"
-#import "RoomsViewController.h"
 #import "NSManagedObjectContext+NSManagedObjectContext.h"
+#import "ReservationService.h"
 
-@interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface LookupViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
 //@property (strong, nonatomic) NSArray *datasource;
-@property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSFetchRequest *request;
 
 @end
 
-@implementation HotelsViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self setupTableView];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-
-}
+@implementation LookupViewController
 
 - (void)loadView
 {
@@ -41,50 +31,53 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
-//- (NSArray *)datasource
+//- (void)setDatasource:(NSArray *)datasource
 //{
-//    if (!_datasource) {
-//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        NSManagedObjectContext *context = delegate.managedObjectContext;
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-//        NSError *fetchError;
-//        _datasource = [context executeFetchRequest:request error:&fetchError];
-//        
-//        if (fetchError) {
-//            NSLog(@"Error fetching from Core Data");
-//        }
-//    }
-//    
-//    return _datasource;
+//    _datasource = datasource;
+//    [self.tableView reloadData];
 //}
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
-        
-        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[NSManagedObjectContext managerContext] sectionNameKeyPath:nil cacheName:nil];
-        _fetchedResultsController.delegate = self;
-        
-        NSError *error;
-        [_fetchedResultsController performFetch:&error];
-        
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        }
-        else {
-            NSLog(@"Fetch successful!");
-        }
+//        self.request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+//        self.request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"guest.name" ascending:YES]];
+//        
+//        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:self.request managedObjectContext:[NSManagedObjectContext managerContext] sectionNameKeyPath:nil cacheName:nil];
+//        
+//        NSError *error;
+//        [_fetchedResultsController performFetch:&error];
+//        
+//        if (error) {
+//            NSLog(@"Fetch Error: %@", error.localizedDescription);
+//        }
+//        else {
+//            NSLog(@"Fetch successful!");
+//        }
+        ReservationService *operator = [[ReservationService alloc]init];
+        _fetchedResultsController = [operator findAllReservations:self.request];
     }
+    _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setTitle:@"Search"];
+    [self setupTableView];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 - (void)setupTableView
 {
     self.tableView = [[UITableView alloc]init];
-    self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -98,6 +91,7 @@
                                                                attribute:NSLayoutAttributeLeading
                                                               multiplier:1.0
                                                                 constant:0.0];
+    
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeTop
                                                                relatedBy:NSLayoutRelationEqual
@@ -105,6 +99,7 @@
                                                                attribute:NSLayoutAttributeTop
                                                               multiplier:1.0
                                                                 constant:0.0];
+    
     NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeTrailing
                                                                relatedBy:NSLayoutRelationEqual
@@ -112,6 +107,7 @@
                                                                attribute:NSLayoutAttributeTrailing
                                                               multiplier:1.0
                                                                 constant:0.0];
+    
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeBottom
                                                                relatedBy:NSLayoutRelationEqual
@@ -130,14 +126,15 @@
 
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //{
-//    return self.datasource.count;
+//    return [self.datasource count];
 //}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([[self.fetchedResultsController sections]count] > 0) {
-        id<NSFetchedResultsSectionInfo> sectionsInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-        return [sectionsInfo numberOfObjects];
+        id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        
+        return [sectionInfo numberOfObjects];
     }
     else {
         return 0;
@@ -152,55 +149,62 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = hotel.name;
+//    Reservation *reservation = self.datasource[indexPath.row];
+    Reservation *reservation = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
+    cell.textLabel.text = [NSString stringWithFormat:@"Name: %@, Hotel: %@", reservation.guest.name, reservation.room.hotel.name];
     return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 150.0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIImage *headerImage = [UIImage imageNamed:@"hotel"];
-    UIImageView *headerView = [[UIImageView alloc]initWithImage:headerImage];
-    headerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 150.0);
-    headerView.contentMode = UIViewContentModeScaleAspectFill;
-    headerView.clipsToBounds = YES;
-    return headerView;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
-    roomsViewController.hotel = hotel;
-    NSLog(@"This is the room count: %lu", roomsViewController.hotel.room.count);
-    [self.navigationController pushViewController:roomsViewController animated:YES];
-    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        [[NSManagedObjectContext managerContext]deleteObject:hotel];
+        Reservation *reservation = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [[NSManagedObjectContext managerContext]deleteObject:reservation];
         [[NSManagedObjectContext managerContext]save:nil];
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     return YES;
 }
 
-#pragma mark - FetchedResultsControllerDelegate
+#pragma mark - UITableViewDelegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 44.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 44.0)];
+    searchBar.placeholder = @"Search By E-mail";
+    searchBar.delegate = self;
+    return searchBar;
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSString *searchText = searchBar.text;
+
+    self.request.predicate = [NSPredicate predicateWithFormat:@"guest.email == %@", searchText];
+    
+    NSError *error;
+    [self.fetchedResultsController performFetch:&error];
+    if (error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+    }
+    else {
+        NSLog(@"Fetch success");
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {

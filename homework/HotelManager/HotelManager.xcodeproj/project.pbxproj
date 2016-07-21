@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142EAA251D3FE240009507CE /* HotelManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142EAA241D3FE240009507CE /* HotelManagerTests.m */; };
+		142EAA2E1D401789009507CE /* LookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142EAA2D1D401789009507CE /* LookupViewController.m */; };
+		142EAA311D403DFC009507CE /* ReservationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 142EAA301D403DFC009507CE /* ReservationService.m */; };
+		142EAA341D40546E009507CE /* AppDelegate+AppBootStrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 142EAA331D40546E009507CE /* AppDelegate+AppBootStrap.m */; };
 		14D85D4F1D3D8E92001ECA5F /* HotelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D85D4E1D3D8E92001ECA5F /* HotelsViewController.m */; };
 		14D85D521D3D8EA1001ECA5F /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D85D511D3D8EA1001ECA5F /* RoomsViewController.m */; };
 		14F4EC741D3EC5B200C22EEA /* Guest+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F4EC671D3EC5B200C22EEA /* Guest+CoreDataProperties.m */; };
@@ -32,7 +36,26 @@
 		14FE0F841D3D8AC9004A3CC1 /* hotel.json in Resources */ = {isa = PBXBuildFile; fileRef = 14FE0F831D3D8AC9004A3CC1 /* hotel.json */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		142EAA271D3FE240009507CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14FE0F261D3D8111004A3CC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14FE0F2D1D3D8111004A3CC1;
+			remoteInfo = HotelManager;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		142EAA221D3FE23F009507CE /* HotelManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HotelManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		142EAA241D3FE240009507CE /* HotelManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotelManagerTests.m; sourceTree = "<group>"; };
+		142EAA261D3FE240009507CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142EAA2C1D401789009507CE /* LookupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupViewController.h; sourceTree = "<group>"; };
+		142EAA2D1D401789009507CE /* LookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupViewController.m; sourceTree = "<group>"; };
+		142EAA2F1D403DFC009507CE /* ReservationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationService.h; sourceTree = "<group>"; };
+		142EAA301D403DFC009507CE /* ReservationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationService.m; sourceTree = "<group>"; };
+		142EAA321D40546E009507CE /* AppDelegate+AppBootStrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+AppBootStrap.h"; sourceTree = "<group>"; };
+		142EAA331D40546E009507CE /* AppDelegate+AppBootStrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+AppBootStrap.m"; sourceTree = "<group>"; };
 		14D85D4D1D3D8E92001ECA5F /* HotelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelsViewController.h; sourceTree = "<group>"; };
 		14D85D4E1D3D8E92001ECA5F /* HotelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelsViewController.m; sourceTree = "<group>"; };
 		14D85D501D3D8EA1001ECA5F /* RoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsViewController.h; sourceTree = "<group>"; };
@@ -77,6 +100,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		142EAA1F1D3FE23F009507CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14FE0F2B1D3D8111004A3CC1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -87,11 +117,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		142EAA231D3FE240009507CE /* HotelManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				142EAA241D3FE240009507CE /* HotelManagerTests.m */,
+				142EAA261D3FE240009507CE /* Info.plist */,
+			);
+			path = HotelManagerTests;
+			sourceTree = "<group>";
+		};
 		14F4EC7D1D3EC61900C22EEA /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				14F4EC7A1D3EC61100C22EEA /* NSManagedObjectContext+NSManagedObjectContext.h */,
 				14F4EC7B1D3EC61100C22EEA /* NSManagedObjectContext+NSManagedObjectContext.m */,
+				142EAA321D40546E009507CE /* AppDelegate+AppBootStrap.h */,
+				142EAA331D40546E009507CE /* AppDelegate+AppBootStrap.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -100,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				14FE0F301D3D8111004A3CC1 /* HotelManager */,
+				142EAA231D3FE240009507CE /* HotelManagerTests */,
 				14FE0F2F1D3D8111004A3CC1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				14FE0F2E1D3D8111004A3CC1 /* HotelManager.app */,
+				142EAA221D3FE23F009507CE /* HotelManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +204,8 @@
 				14F4EC821D3ED01700C22EEA /* AvailabilityViewController.m */,
 				14F4EC8A1D3ED75A00C22EEA /* DateViewController.h */,
 				14F4EC8B1D3ED75A00C22EEA /* DateViewController.m */,
+				142EAA2C1D401789009507CE /* LookupViewController.h */,
+				142EAA2D1D401789009507CE /* LookupViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -194,6 +239,8 @@
 				14F4EC701D3EC5B200C22EEA /* Reservation.h */,
 				14F4EC711D3EC5B200C22EEA /* Reservation.m */,
 				14FE0F3D1D3D8111004A3CC1 /* HotelManager.xcdatamodeld */,
+				142EAA2F1D403DFC009507CE /* ReservationService.h */,
+				142EAA301D403DFC009507CE /* ReservationService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -201,6 +248,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		142EAA211D3FE23F009507CE /* HotelManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 142EAA2B1D3FE240009507CE /* Build configuration list for PBXNativeTarget "HotelManagerTests" */;
+			buildPhases = (
+				142EAA1E1D3FE23F009507CE /* Sources */,
+				142EAA1F1D3FE23F009507CE /* Frameworks */,
+				142EAA201D3FE23F009507CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				142EAA281D3FE240009507CE /* PBXTargetDependency */,
+			);
+			name = HotelManagerTests;
+			productName = HotelManagerTests;
+			productReference = 142EAA221D3FE23F009507CE /* HotelManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		14FE0F2D1D3D8111004A3CC1 /* HotelManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14FE0F481D3D8111004A3CC1 /* Build configuration list for PBXNativeTarget "HotelManager" */;
@@ -227,6 +292,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Sung Kim";
 				TargetAttributes = {
+					142EAA211D3FE23F009507CE = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 14FE0F2D1D3D8111004A3CC1;
+					};
 					14FE0F2D1D3D8111004A3CC1 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -246,11 +315,19 @@
 			projectRoot = "";
 			targets = (
 				14FE0F2D1D3D8111004A3CC1 /* HotelManager */,
+				142EAA211D3FE23F009507CE /* HotelManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		142EAA201D3FE23F009507CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14FE0F2C1D3D8111004A3CC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,6 +343,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		142EAA1E1D3FE23F009507CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				142EAA251D3FE240009507CE /* HotelManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14FE0F2A1D3D8111004A3CC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,8 +360,10 @@
 				14F4EC741D3EC5B200C22EEA /* Guest+CoreDataProperties.m in Sources */,
 				14F4EC781D3EC5B200C22EEA /* Reservation+CoreDataProperties.m in Sources */,
 				14F4EC8C1D3ED75A00C22EEA /* DateViewController.m in Sources */,
+				142EAA2E1D401789009507CE /* LookupViewController.m in Sources */,
 				14FE0F3F1D3D8111004A3CC1 /* HotelManager.xcdatamodeld in Sources */,
 				14FE0F391D3D8111004A3CC1 /* ViewController.m in Sources */,
+				142EAA341D40546E009507CE /* AppDelegate+AppBootStrap.m in Sources */,
 				14F4EC831D3ED01700C22EEA /* AvailabilityViewController.m in Sources */,
 				14F4EC761D3EC5B200C22EEA /* Hotel+CoreDataProperties.m in Sources */,
 				14F4EC7C1D3EC61100C22EEA /* NSManagedObjectContext+NSManagedObjectContext.m in Sources */,
@@ -287,11 +374,20 @@
 				14F4EC751D3EC5B200C22EEA /* Guest.m in Sources */,
 				14D85D521D3D8EA1001ECA5F /* RoomsViewController.m in Sources */,
 				14F4EC891D3ED5F300C22EEA /* Room.m in Sources */,
+				142EAA311D403DFC009507CE /* ReservationService.m in Sources */,
 				14FE0F331D3D8111004A3CC1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		142EAA281D3FE240009507CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14FE0F2D1D3D8111004A3CC1 /* HotelManager */;
+			targetProxy = 142EAA271D3FE240009507CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		14FE0F421D3D8111004A3CC1 /* LaunchScreen.storyboard */ = {
@@ -305,6 +401,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		142EAA291D3FE240009507CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HotelManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sung-Kim.HotelManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HotelManager.app/HotelManager";
+			};
+			name = Debug;
+		};
+		142EAA2A1D3FE240009507CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HotelManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sung-Kim.HotelManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HotelManager.app/HotelManager";
+			};
+			name = Release;
+		};
 		14FE0F461D3D8111004A3CC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -416,6 +536,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		142EAA2B1D3FE240009507CE /* Build configuration list for PBXNativeTarget "HotelManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				142EAA291D3FE240009507CE /* Debug */,
+				142EAA2A1D3FE240009507CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		14FE0F291D3D8111004A3CC1 /* Build configuration list for PBXProject "HotelManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

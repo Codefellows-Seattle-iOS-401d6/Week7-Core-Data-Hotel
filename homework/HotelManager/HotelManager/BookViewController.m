@@ -8,6 +8,8 @@
 
 #import "BookViewController.h"
 #import "NSManagedObjectContext+NSManagedObjectContext.h"
+#import "ReservationService.h"
+
 
 @interface BookViewController ()
 
@@ -197,18 +199,20 @@
 
 - (void)saveButtonSelected:(UIBarButtonItem *)sender
 {
-    Reservation *reservation = [Reservation reservationWithStartDate:self.startDate endDate:self.endDate room:self.room];
+//    Reservation *reservation = [Reservation reservationWithStartDate:self.startDate endDate:self.endDate room:self.room];
+//    
+//    reservation.guest = [Guest guestWithName:self.nameField.text lastName:self.lastNameField.text email:self.emailField.text];
+//    
+//    self.room.reservation = reservation;
+//    
+//    NSError *error;
+//    [[NSManagedObjectContext managerContext] save:&error];
     
-    self.room.reservation = reservation;
-    reservation.guest = [Guest guestWithName:self.nameField.text lastName:self.lastNameField.text email:self.emailField.text];
+    Guest *guest = [Guest guestWithName:self.nameField.text lastName:self.lastNameField.text email:self.emailField.text];
     
-    NSError *error;
-    [[NSManagedObjectContext managerContext] save:&error];
+    ReservationService *operator = [[ReservationService alloc]init];
     
-    if (error) {
-        NSLog(@"Save error: %@", error);
-    }
-    else {
+    if ([operator saveReservationWithStartDate:self.startDate endDate:self.endDate room:self.room guest:guest]) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

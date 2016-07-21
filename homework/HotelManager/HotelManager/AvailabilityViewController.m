@@ -12,6 +12,7 @@
 #import "Room.h"
 #import "Hotel.h"
 #import "BookViewController.h"
+#import "ReservationService.h"
 
 @interface AvailabilityViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -24,38 +25,42 @@
 
 - (NSArray *)datasource
 {
+
     if (!_datasource) {
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        ReservationService *operator = [[ReservationService alloc]init];
+//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//        
+//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+//        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate];
+//        
+//        NSError *error;
+//        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:&error];
+//        
+//        if (error) {
+//            NSLog(@"Error with fetch...");
+//        }
+//        else {
+//            NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
+//            for (Reservation *reservation in results) {
+//                [unavailableRooms addObject:reservation.room];
+//            }
+//        
+//            NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+//            checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
+//
+//            NSError *availableError;
+//            _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:&availableError];
+//            
+//            if (availableError) {
+//                NSLog(@"Error with second fetch...");
+//            }
+//            else {
+//                NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+//                _datasource = [_datasource sortedArrayUsingDescriptors:@[sort]];
+//            }
+//        }
+        _datasource = [operator checkAvailabilityWithStartDate:self.startDate endDate:self.endDate];
         
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate];
-        
-        NSError *error;
-        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:&error];
-        
-        if (error) {
-            NSLog(@"Error with fetch...");
-        }
-        else {
-            NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
-            for (Reservation *reservation in results) {
-                [unavailableRooms addObject:reservation.room];
-            }
-        
-            NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-            checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
-            
-            NSError *availableError;
-            _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:&availableError];
-            
-            if (availableError) {
-                NSLog(@"Error with second fetch...");
-            }
-            else {
-                NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
-                _datasource = [_datasource sortedArrayUsingDescriptors:@[sort]];
-            }
-        }
     }
     
     return _datasource;
