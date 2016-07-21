@@ -8,7 +8,7 @@
 
 #import "Guest.h"
 #import "Reservation.h"
-#include "NSManagedObjectContext+NSObject.h"
+#import "NSObject+NSManagedObjectContext.h"
 
 @implementation Guest
 

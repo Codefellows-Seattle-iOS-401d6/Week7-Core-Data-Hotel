@@ -8,9 +8,10 @@
 
 #import "BookViewController.h"
 #import "Reservation.h"
-#import "NSManagedObjectContext+NSObject.h"
+#import "NSObject+NSManagedObjectContext.h"
 #import "Reservation+CoreDataProperties.h"
 #import "Guest.h"
+#import "Hotel.h"
 
 @interface BookViewController ()
 

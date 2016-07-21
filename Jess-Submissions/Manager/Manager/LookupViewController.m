@@ -1,38 +1,42 @@
 //
-//  AvailabilityViewController.m
+//  LookupViewController.m
 //  Manager
 //
-//  Created by Jessica Malesh on 7/19/16.
+//  Created by Jessica Malesh on 7/20/16.
 //  Copyright © 2016 Jess Malesh. All rights reserved.
 //
 
-#import "AvailabilityViewController.h"
-#import "AppDelegate.h"
+#import "LookupViewController.h"
 #import "Reservation.h"
+#import "Guest.h"
 #import "Room.h"
 #import "Hotel.h"
-#import "BookViewController.h"
-#import "RoomsViewController.h"
-#import "ReservationService.h"
+#import "NSObject+NSManagedObjectContext.h"
 
-@interface AvailabilityViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LookupViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
-@property (strong, nonatomic)UITableView *tableView;
 @property (strong, nonatomic)NSArray *datasource;
+@property (strong, nonatomic)UITableView *tableView;
 
 @end
 
-@implementation AvailabilityViewController
+@implementation LookupViewController
 
-
-
+- (void)loadView
+{
+    [super loadView];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self setTitle:@"Rooms"];
+    [self setTitle:@"Search"];
+    
     [self setupTableView];
+    
 }
 
 - (void)setupTableView
@@ -44,7 +48,6 @@
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:self.tableView];
-    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.tableView
@@ -69,40 +72,34 @@
                                                                attribute:NSLayoutAttributeBottom
                                                                relatedBy:NSLayoutRelationEqual
                                                                   toItem:self.view
-                                                               attribute:NSLayoutAttributeBottom                                                              multiplier:1.0 constant:0.0];
-   
+                                                               attribute:NSLayoutAttributeBottom
+                                                              multiplier:1.0 constant:0.0];
+    
     leading.active = YES;
     top.active = YES;
     trailing.active = YES;
     bottom.active = YES;
     
+    
 }
 
-
-- (void)loadView
+- (void)setDatasource:(NSArray *)datasource
 {
-    [super loadView];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    _datasource = datasource;
+    
+    [self.tableView reloadData];
 }
 
-- (NSArray *)datasource
+- (void)didReceiveMemoryWarning
 {
-    if (!_datasource) {
-        _datasource = [ReservationService isRoomAvailable:self.startDate endDate:self.endDate];
-    }
-   
-    return _datasource;
+    [super didReceiveMemoryWarning];
+    
 }
-
-
-
-#pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.datasource.count;
+    return [self.datasource count];
 }
-
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -112,51 +109,44 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Room *room = self.datasource[indexPath.row];
+    Reservation *reservation = self.datasource[indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Rooms: %i (%i beds, $%0.2f) per night", room.number.intValue, room.beds.intValue, room.rate.floatValue];
+    cell.textLabel.text = [NSString stringWithFormat:@"Name: %@, Hotel: %@", reservation.guest.lastName, reservation.room.hotel];
+    
     return cell;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Room *room = self.datasource[indexPath.row];
-    
-    BookViewController *bookViewController = [[BookViewController alloc]init];
-    
-    bookViewController.room = room;
-    bookViewController.startDate = self.startDate;
-    bookViewController.endDate = self.endDate;
-    
-    [self.navigationController pushViewController:bookViewController animated:YES];
-}
-
+#pragma mark - TableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 150.0;
+    return 44.0;
+    
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIImage *headerImage = [UIImage imageNamed:@"hotel"];
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 44.0)];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:headerImage];
-    imageView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+    searchBar.delegate = self;
     
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds =YES;
-    
-    return imageView;
+    return searchBar;
 }
 
-
-
-
-
-
-
-
-
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSString *searchText = searchBar.text;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+    request.predicate = [NSPredicate predicateWithFormat:@"guest.lastName == %@", searchText];
+    
+    NSError *error;
+    NSArray *results = [[NSObject managerContext] executeFetchRequest:request error:&error];
+    
+    if (error) {
+        NSLog(@"Error %@", error.localizedDescription);
+    } else{
+        self.datasource = results;
+    }
+}
 
 @end

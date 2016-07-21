@@ -10,6 +10,8 @@
 #import "HotelsViewController.h"
 #import "DateViewController.h"
 #import "AppDelegate.h"
+#import "LookupViewController.h"
+#import "RoomsViewController.h"
 
 @interface ViewController ()
 
@@ -190,13 +192,13 @@
 
 - (void)bookButtonSelected:(UIButton *)sender
 {
-    [self.navigationController pushViewController:[DateViewController new] animated:YES];
+    [self.navigationController pushViewController:[[DateViewController alloc]init] animated:YES];
     
 }
 
 - (void)lookupButtonSelected:(UIButton *)sender
 {
-    NSLog(@"Lookup...");
+    [self.navigationController pushViewController:[[LookupViewController alloc]init] animated:YES];
     
 }
 

@@ -11,7 +11,7 @@
 #import "Room.h"
 #import "AppDelegate.h"
 #import "Reservation+CoreDataProperties.h"
-#import "NSManagedObjectContext+NSObject.h"
+#import "NSObject+NSManagedObjectContext.h"
 
 @implementation Reservation
 
