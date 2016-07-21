@@ -12,6 +12,7 @@
 #import "Room.h"
 #import "RoomsViewController.h"
 #import "NSManagedObject+NSManagedObjectContextCategory.h"
+#import "ReservationService.h"
 
 @interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
@@ -25,17 +26,8 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if(!_fetchedResultsController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        request.sortDescriptors =@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
-        
-        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[NSManagedObject managedContext] sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultsController = [ReservationService fetchRequest:@"Hotel" sortKey:@"name"];
         _fetchedResultsController.delegate = self;
-        NSError *error;
-        [_fetchedResultsController performFetch:&error];
-        
-        if (error) {
-            NSLog(@"Error with hotel fetch. Error: %@", error.localizedDescription);
-        }
     }
     return _fetchedResultsController;
 }

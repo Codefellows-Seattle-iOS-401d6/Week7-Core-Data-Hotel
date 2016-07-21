@@ -12,6 +12,7 @@
 #import "Hotel.h"
 #import "BookViewController.h"
 #import "Reservation.h"
+#import "ReservationService.h"
 
 @interface AvailabilityViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -83,33 +84,7 @@
 
 - (NSArray *)datasource {
     if (!_datasource) {
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate];
-        NSError *error;
-        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:&error];
-        
-        if(error) {
-            NSLog(@"Reservation fetch request failed: Error: %@", error);
-        }
-        
-        NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
-        for (Reservation *reservation in results) {
-            [unavailableRooms addObject:reservation.room];
-        }
-        
-        NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-        checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
-        
-        NSError *checkError;
-        _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:&checkError];
-        
-        if(checkError){
-            NSLog(@"Error with Room check request. Error: %@", checkError);
-        }
-        
-        
+        _datasource = [ReservationService reservationRequest:self.endDate startDate:self.startDate];
     }
     return _datasource;
 }

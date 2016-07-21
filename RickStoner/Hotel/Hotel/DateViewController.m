@@ -126,21 +126,24 @@
     NSDate *endDate = [self.endPicker date];
     
     if ([startDate timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate] || [startDate timeIntervalSinceNow] < -120 ) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Dates" message:@"Please ensure a valid start date and end date." preferredStyle: UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.startPicker.date = [NSDate date];
-        }];
-        
-        [alert addAction:okAction];
-        
-        [self presentViewController:alert animated:YES completion: nil];
-        
+        [self alertInvalidDates];
         return;
     }
     AvailabilityViewController *availabilityViewController = [[AvailabilityViewController alloc]init];
     availabilityViewController.startDate = startDate;
     availabilityViewController.endDate = endDate;
     [self.navigationController pushViewController:availabilityViewController animated:YES];
+}
+
+- (void)alertInvalidDates {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Dates" message:@"Please ensure a valid start date and end date." preferredStyle: UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.startPicker.date = [NSDate date];
+    }];
+    
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion: nil];
 }
 
 @end

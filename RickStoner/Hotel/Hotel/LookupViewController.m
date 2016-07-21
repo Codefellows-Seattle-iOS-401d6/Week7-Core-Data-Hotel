@@ -12,6 +12,7 @@
 #import "Hotel.h"
 #import "NSManagedObject+NSManagedObjectContextCategory.h"
 #import "Reservation.h"
+#import "ReservationService.h"
 
 @interface LookupViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -107,8 +108,6 @@
     
     Reservation *reservation = self.datasource[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"Name: %@ %@, Hotel: %@", reservation.guest.firstName, reservation.guest.lastName, reservation.room.hotel.name];
-    NSLog(@"%@", reservation.room.hotel.name);
-    
     return cell;
 }
 
@@ -130,17 +129,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *searchText = searchBar.text;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-    request.predicate = [NSPredicate predicateWithFormat:@"guest.firstName guest.lastName LIKE %@", searchText];
-    
-    NSError *error;
-    NSArray *results = [[NSManagedObject managedContext] executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Error fetching desired request. Error: %@", error);
-    } else {
-        self.datasource = results;
-        
-    }
+    self.datasource = [ReservationService lookupRequest:searchText];
     searchBar.text = @"";
 }
 
