@@ -1,59 +1,34 @@
 //
-//  HotelsViewController.m
+//  AvailabilityViewController.m
 //  Manager
 //
-//  Created by Michael Babiy on 7/18/16.
-//  Copyright © 2016 Michael Babiy. All rights reserved.
+//  Created by hannah gaskins on 7/19/16.
+//  Copyright © 2016 hannah gaskins. All rights reserved.
 //
 
+#import "AvailabilityViewController.h"
+#import "AppDelegate.h"
+#import "Reservation.h"
+#import "Room.h"
+#import "Hotel.h"
+#import "BookViewController.h"
+#import "ReservationService.h"
 
+@interface AvailabilityViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource>
+@property(strong, nonatomic)UITableView *tableView;
+@property(strong, nonatomic)NSArray *datasource;
 
-@property (strong, nonatomic) NSArray *datasource;
-@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation HotelsViewController
+@implementation AvailabilityViewController
 
-- (NSArray *)datasource
-{
-    if (!_datasource) {
-        
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = delegate.managedObjectContext;
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        
-        NSError *fetchError;
-        
-        _datasource = [context executeFetchRequest:request
-                                             error:&fetchError];
-        
-        if (fetchError) {
-            NSLog(@"Error fetching from Core Data.");
-        }
-    }
-    
-    return _datasource;
-}
-
-- (void)loadView
-{
-    [super loadView];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self setTitle:@"Rooms"];
     [self setupTableView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 - (void)setupTableView
@@ -61,9 +36,11 @@
     self.tableView = [[UITableView alloc]init];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:self.tableView];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.tableView
@@ -77,38 +54,58 @@
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeTop
                                                                relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
+                                                              toItem:self.view
                                                                attribute:NSLayoutAttributeTop
                                                               multiplier:1.0
                                                                 constant:0.0];
     
     NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeTrailing
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
+                                                               relatedBy:NSLayoutRelationEqual toItem:self.view
                                                                attribute:NSLayoutAttributeTrailing
                                                               multiplier:1.0
                                                                 constant:0.0];
     
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.tableView
                                                                attribute:NSLayoutAttributeBottom
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:self.view
+                                                               relatedBy:NSLayoutRelationEqual toItem:self.view
                                                                attribute:NSLayoutAttributeBottom
                                                               multiplier:1.0
                                                                 constant:0.0];
     
     leading.active = YES;
-    top.active = YES;
     trailing.active = YES;
+    top.active = YES;
     bottom.active = YES;
+    
+
+
+    
 }
 
-#pragma mark - UITableViewDataSource
+- (NSArray *)datasource
+{
+    //bookroommethod(endDate, startDate) -> NSArray
+    // abstract away +++++++++++++++++++++++++
+    if (!_datasource) {
+        _datasource = [ReservationService avilableRoomMethod:self.endDate startDate:self.startDate];
+    }
+    
+    return _datasource;
+
+}
+
+- (void)loadView
+{
+    [super loadView];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+}
+
+#pragma mark -UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.datasource.count;
+    return [self.datasource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,13 +116,28 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    Hotel *hotel = self.datasource[indexPath.row];
-    cell.textLabel.text = hotel.name;
+    Room *room = self.datasource[indexPath.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"Room: %i (%i beds, $%0.2f) per night", room.number.intValue, room.beds.intValue, room.rate.floatValue];
     
     return cell;
+    
 }
 
-#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Room *room = self.datasource[indexPath.row];
+    
+    BookViewController *bookViewController = [[BookViewController alloc]init];
+    
+    bookViewController.room = room;
+    bookViewController.startDate = self.startDate;
+    bookViewController.endDate = self.endDate;
+    
+    [self.navigationController pushViewController:bookViewController animated:YES];
+    
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -135,23 +147,16 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIImage *headerImage = [UIImage imageNamed:@"hotel"];
-    UIImageView *headerView = [[UIImageView alloc]initWithImage:headerImage];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:headerImage];
     
-    headerView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 150.0);
-    headerView.contentMode = UIViewContentModeScaleAspectFill;
-    headerView.clipsToBounds = YES;
+    imageView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
     
-    return headerView;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    
+    return imageView;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Hotel *hotel = self.datasource[indexPath.row];
-    RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
-    
-    roomsViewController.hotel = hotel;
-    
-    [self.navigationController pushViewController:roomsViewController animated:YES];
-}
+
 
 @end
