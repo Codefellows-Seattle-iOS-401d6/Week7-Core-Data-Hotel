@@ -141,8 +141,8 @@
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
-    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption: [NSNumber numberWithBool:NO], NSPersistentStoreUbiquitousContentNameKey: @"Demo!", NSPersistentStoreUbiquitousContentURLKey: @"Logs"};
-    =
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption: [NSNumber numberWithBool:YES], NSPersistentStoreUbiquitousContentNameKey: @"Demo!", NSPersistentStoreUbiquitousContentURLKey: @"Logs"};
+    
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
