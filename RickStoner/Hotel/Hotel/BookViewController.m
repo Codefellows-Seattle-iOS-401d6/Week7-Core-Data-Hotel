@@ -14,6 +14,7 @@
 @property (strong, nonatomic)UITextField *firstNameField;
 @property (strong, nonatomic)UITextField *lastNameField;
 @property (strong, nonatomic)UITextField *emailField;
+@property (strong, nonatomic)UITextField *phoneNumber;
 
 @end
 
@@ -114,18 +115,25 @@
     self.firstNameField = [[UITextField alloc]init];
     self.lastNameField = [[UITextField alloc]init];
     self.emailField = [[UITextField alloc]init];
+    self.phoneNumber = [[UITextField alloc]init];
     
     self.firstNameField.placeholder = @"Please enter your first name";
     self.lastNameField.placeholder = @"Please enter your last name";
     self.emailField.placeholder = @"Please enter email";
+    self.phoneNumber.placeholder = @"Please enter your phone number";
     
     [self.view addSubview:self.firstNameField];
     [self.view addSubview:self.lastNameField];
     [self.view addSubview:self.emailField];
+    [self.view addSubview:self.phoneNumber];
+    
+    self.phoneNumber.keyboardType = UIKeyboardTypePhonePad;
     
     self.firstNameField.translatesAutoresizingMaskIntoConstraints = NO;
     self.lastNameField.translatesAutoresizingMaskIntoConstraints = NO;
     self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
+    self.phoneNumber.translatesAutoresizingMaskIntoConstraints = NO;
+    
     
     NSLayoutConstraint *leadingFirst = [NSLayoutConstraint constraintWithItem: self.firstNameField
                                                               attribute:NSLayoutAttributeLeading
@@ -198,6 +206,29 @@
                                                                 attribute:NSLayoutAttributeTop
                                                                multiplier:1.0
                                                                  constant:204.0];
+    NSLayoutConstraint *leadingPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumber
+                                                                    attribute:NSLayoutAttributeLeading
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:self.view
+                                                                    attribute:NSLayoutAttributeLeading
+                                                                   multiplier:1.0
+                                                                     constant:20.0];
+    
+    NSLayoutConstraint *trailingPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumber
+                                                                     attribute:NSLayoutAttributeTrailing
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeTrailing
+                                                                    multiplier:1.0
+                                                                      constant:-20.0];
+    
+    NSLayoutConstraint *topPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumber
+                                                                attribute:NSLayoutAttributeTop
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeTop
+                                                               multiplier:1.0
+                                                                 constant:264.0];
     
     leadingFirst.active = YES;
     trailingFirst.active = YES;
@@ -208,6 +239,9 @@
     leadingEmail.active = YES;
     trailingEmail.active = YES;
     topEmail.active = YES;
+    topPhone.active = YES;
+    leadingPhone.active = YES;
+    trailingPhone.active = YES;
     
     [self.firstNameField becomeFirstResponder];
 }

@@ -141,6 +141,21 @@
 			path = HotelTest;
 			sourceTree = "<group>";
 		};
+		044B804F1D4134BD007BB676 /* Entitiies */ = {
+			isa = PBXGroup;
+			children = (
+				04C9F0211D3D8A2F00846746 /* Reservation+CoreDataProperties.h */,
+				04C9F0221D3D8A2F00846746 /* Reservation+CoreDataProperties.m */,
+				04C9F0251D3D8A2F00846746 /* Guest+CoreDataProperties.h */,
+				04C9F0261D3D8A2F00846746 /* Guest+CoreDataProperties.m */,
+				04C9F0291D3D8A2F00846746 /* Hotel+CoreDataProperties.h */,
+				04C9F02A1D3D8A2F00846746 /* Hotel+CoreDataProperties.m */,
+				04C9F02D1D3D8A2F00846746 /* Room+CoreDataProperties.h */,
+				04C9F02E1D3D8A2F00846746 /* Room+CoreDataProperties.m */,
+			);
+			name = Entitiies;
+			sourceTree = "<group>";
+		};
 		04C9EFD91D3D80C000846746 = {
 			isa = PBXGroup;
 			children = (
@@ -232,20 +247,13 @@
 			children = (
 				044B803B1D4029CF007BB676 /* ReservationService.h */,
 				044B803C1D4029CF007BB676 /* ReservationService.m */,
-				04C9F0211D3D8A2F00846746 /* Reservation+CoreDataProperties.h */,
-				04C9F0221D3D8A2F00846746 /* Reservation+CoreDataProperties.m */,
+				044B804F1D4134BD007BB676 /* Entitiies */,
 				04C9F0231D3D8A2F00846746 /* Reservation.h */,
 				04C9F0241D3D8A2F00846746 /* Reservation.m */,
-				04C9F0251D3D8A2F00846746 /* Guest+CoreDataProperties.h */,
-				04C9F0261D3D8A2F00846746 /* Guest+CoreDataProperties.m */,
 				04C9F0271D3D8A2F00846746 /* Guest.h */,
 				04C9F0281D3D8A2F00846746 /* Guest.m */,
-				04C9F0291D3D8A2F00846746 /* Hotel+CoreDataProperties.h */,
-				04C9F02A1D3D8A2F00846746 /* Hotel+CoreDataProperties.m */,
 				04C9F02B1D3D8A2F00846746 /* Hotel.h */,
 				04C9F02C1D3D8A2F00846746 /* Hotel.m */,
-				04C9F02D1D3D8A2F00846746 /* Room+CoreDataProperties.h */,
-				04C9F02E1D3D8A2F00846746 /* Room+CoreDataProperties.m */,
 				04C9F02F1D3D8A2F00846746 /* Room.h */,
 				04C9F0301D3D8A2F00846746 /* Room.m */,
 				04C9EFF11D3D80C100846746 /* Hotel.xcdatamodeld */,
