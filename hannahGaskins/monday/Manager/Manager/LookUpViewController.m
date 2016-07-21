@@ -128,8 +128,9 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSString *searchText = searchBar.text;
+    // abstract away
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-    request.predicate = [NSPredicate predicateWithFormat:@"guest.name == %@", searchText];
+    request.predicate = [NSPredicate predicateWithFormat:@"guest.lastName == %@", searchText];
     
     NSError *error;
     NSArray *results = [[NSObject managerContext] executeFetchRequest:request error:&error];

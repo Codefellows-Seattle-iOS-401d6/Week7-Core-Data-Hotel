@@ -24,6 +24,7 @@
 		EE3A8F621D3EA89700A8179E /* DateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F611D3EA89700A8179E /* DateViewController.m */; };
 		EE3A8F6A1D3FE20A00A8179E /* ManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F691D3FE20A00A8179E /* ManagerTests.m */; };
 		EE3A8F731D3FF9A600A8179E /* LookUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */; };
+		EE3A8F761D4023A200A8179E /* ReservationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3A8F751D4023A200A8179E /* ReservationService.m */; };
 		EECC5F1B1D3DABD90071BB8B /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F0C1D3DABD90071BB8B /* Room+CoreDataProperties.m */; };
 		EECC5F1C1D3DABD90071BB8B /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F0E1D3DABD90071BB8B /* Room.m */; };
 		EECC5F1D1D3DABD90071BB8B /* Hotel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EECC5F101D3DABD90071BB8B /* Hotel+CoreDataProperties.m */; };
@@ -75,6 +76,8 @@
 		EE3A8F6B1D3FE20A00A8179E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE3A8F711D3FF9A600A8179E /* LookUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookUpViewController.h; sourceTree = "<group>"; };
 		EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpViewController.m; sourceTree = "<group>"; };
+		EE3A8F741D4023A200A8179E /* ReservationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationService.h; sourceTree = "<group>"; };
+		EE3A8F751D4023A200A8179E /* ReservationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationService.m; sourceTree = "<group>"; };
 		EECC5F0B1D3DABD90071BB8B /* Room+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room+CoreDataProperties.h"; sourceTree = "<group>"; };
 		EECC5F0C1D3DABD90071BB8B /* Room+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Room+CoreDataProperties.m"; sourceTree = "<group>"; };
 		EECC5F0D1D3DABD90071BB8B /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 		EE113A981D3D4FFC00EB36C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EE3A8F741D4023A200A8179E /* ReservationService.h */,
+				EE3A8F751D4023A200A8179E /* ReservationService.m */,
 				EE113AAC1D3D4FFC00EB36C3 /* Info.plist */,
 				EE113AA41D3D4FFC00EB36C3 /* Manager.xcdatamodeld */,
 				EE113A991D3D4FFC00EB36C3 /* main.m */,
@@ -167,16 +172,16 @@
 		EE113AB91D3D887500EB36C3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE3A8F711D3FF9A600A8179E /* LookUpViewController.h */,
-				EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */,
-				EE3A8F5A1D3E94A900A8179E /* BookViewController.h */,
-				EE3A8F5B1D3E94A900A8179E /* BookViewController.m */,
 				EE3A8F5D1D3E9FA900A8179E /* AvailabilityViewController.h */,
 				EE3A8F5E1D3E9FA900A8179E /* AvailabilityViewController.m */,
+				EE3A8F5A1D3E94A900A8179E /* BookViewController.h */,
+				EE3A8F5B1D3E94A900A8179E /* BookViewController.m */,
 				EE3A8F601D3EA89700A8179E /* DateViewController.h */,
 				EE3A8F611D3EA89700A8179E /* DateViewController.m */,
 				EE113AED1D3D90C900EB36C3 /* HotelsViewController.h */,
 				EE113AEE1D3D90C900EB36C3 /* HotelsViewController.m */,
+				EE3A8F711D3FF9A600A8179E /* LookUpViewController.h */,
+				EE3A8F721D3FF9A600A8179E /* LookUpViewController.m */,
 				EE113AF01D3D90DE00EB36C3 /* RoomsViewController.h */,
 				EE113AF11D3D90DE00EB36C3 /* RoomsViewController.m */,
 				EE113A9E1D3D4FFC00EB36C3 /* ViewController.h */,
@@ -365,6 +370,7 @@
 				EE3A8F731D3FF9A600A8179E /* LookUpViewController.m in Sources */,
 				EECC5F1C1D3DABD90071BB8B /* Room.m in Sources */,
 				EECC5F1E1D3DABD90071BB8B /* Hotel.m in Sources */,
+				EE3A8F761D4023A200A8179E /* ReservationService.m in Sources */,
 				EE113AA61D3D4FFC00EB36C3 /* Manager.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@
 #import "BookViewController.h"
 
 #import "NSObject+NSManagedObject.h"
+#import "ReservationService.h"
 
 @interface BookViewController ()
 
@@ -195,20 +196,19 @@
 
 - (void)saveButtonSelected:(UIBarButtonItem *)sender
 {
-    Reservation *reservation = [Reservation reservationWithStartDate:self.startDate endDate:self.endDate room:self.room];
-    
-    self.room.reservation = reservation;
-    reservation.guest = [Guest guestWithName:self.nameField.text lastName:self.lastNameField.text email:self.emailField.text]; // passing in name to create guest name
-    
-    NSError *error;
-    [[NSObject managerContext] save:&error];
-    
-    if (error) {
-        NSLog(@"Save error: %@", error);
-    }
-    else {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
+    __weak typeof(self) weakSelf = self; // for retain cycle prevention
+   
+    [ReservationService bookRoomMethod:self.endDate
+                             startDate:self.startDate
+                                 email:self.room
+                             nameField:self.nameField
+                         lastNameField:self.lastNameField
+                            emailField:self.emailField
+                            completion: ^ {
+                                
+                                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                                
+                            }];
 }
 
 
