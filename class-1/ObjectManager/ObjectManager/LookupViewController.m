@@ -17,43 +17,23 @@
 
 @interface LookupViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 //@property  (strong, nonatomic) NSArray *datasource;
+
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchRequest *request;
+@property (strong, nonatomic) ReservationService *operator;
+
+
 @end
 
 @implementation LookupViewController
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (!_fetchedResultsController){
-        ReservationService *operator = [[ReservationService alloc]init];
 
-        
-//        self.request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-//        
-//        self.request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"room.hotel" ascending:YES]];
-//
-//        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.request managedObjectContext:[NSObject managerContext] sectionNameKeyPath:nil cacheName:nil];
-//        
-//        _fetchedResultsController.delegate = self;
-//        
-//        NSError *error;
-//        [_fetchedResultsController performFetch:&error];
-//        
-//        if (error){
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//        else {
-//            NSLog(@"Reservation fetch success");
-//        }
-        _fetchedResultsController = [operator showAllReservations:self.request];
 
-    }
-    _fetchedResultsController.delegate = self;
-    return _fetchedResultsController;
-}
+
 - (void)loadView{
     [super loadView];
+    _operator = [[ReservationService alloc]init];
     [self.view setBackgroundColor:[UIColor blackColor]];
 }
 - (void)viewDidLoad {
@@ -152,16 +132,45 @@
     return searchBar;
 }
 
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (!_fetchedResultsController){
+        
+        _fetchedResultsController = [_operator showAllReservations];
+        
+    }
+    _fetchedResultsController.delegate = self;
+    return _fetchedResultsController;
+}
 
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if ( [searchText length] == 0 ) {
+        self.fetchedResultsController.fetchRequest.predicate = nil;
+        
+        NSError *error;
+        [self.fetchedResultsController performFetch:&error];
+        if (error)
+        {
+            NSLog(@"Error: %@", error.localizedDescription);
+            
+        } else {
+            
+            NSLog(@"fetch success");
+            [self.tableView reloadData];
+        }
+        [self.tableView reloadData];
+    }
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSString *searchText = searchBar.text;
     
-    self.request.predicate = [NSPredicate predicateWithFormat:@"guest.firstName == %@ || guest.lastName == %@ || guest.email == %@", searchText, searchText, searchText];
-    
-    
+//    self.request.predicate = [NSPredicate predicateWithFormat:@"guest.firstName == %@ || guest.lastName == %@ || guest.email == %@", searchText, searchText, searchText];
+//
+//    
     NSError *error;
+    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"guest.firstName == %@ || guest.lastName == %@ || guest.email == %@", searchText, searchText, searchText];
     [self.fetchedResultsController performFetch:&error];
+    
     
     if (error)
     {

@@ -48,12 +48,12 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
         return [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
 }
 
-- (NSFetchedResultsController *)showAllReservations: (NSFetchRequest *)request
+- (NSFetchedResultsController *)showAllReservations
 {
     
-    request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
     
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"room.hotel" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"room.reservation.guest.firstName" ascending:YES]];
     
     NSFetchedResultsController *returnfetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:[NSObject managerContext] sectionNameKeyPath:nil cacheName:nil];
     

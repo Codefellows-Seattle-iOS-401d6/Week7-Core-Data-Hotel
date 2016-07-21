@@ -14,7 +14,7 @@
 @interface ReservationService : NSObject
 
 - (NSArray *)checkAvailability: (NSDate *)endDate startDate:(NSDate *)startDate;
-- (NSFetchedResultsController *)showAllReservations: (NSFetchRequest *)request;
+- (NSFetchedResultsController *)showAllReservations;
 - (BOOL )bookRoomStarting: (NSDate *)startDate endDate:(NSDate *)endDate room:(Room *)room guest:(Guest *)guest;
 
 @end
