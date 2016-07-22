@@ -126,9 +126,7 @@
     [self.view addSubview:self.lastNameField];
     [self.view addSubview:self.emailField];
     [self.view addSubview:self.phoneNumber];
-    
-    self.phoneNumber.keyboardType = UIKeyboardTypePhonePad;
-    
+        
     self.firstNameField.translatesAutoresizingMaskIntoConstraints = NO;
     self.lastNameField.translatesAutoresizingMaskIntoConstraints = NO;
     self.emailField.translatesAutoresizingMaskIntoConstraints = NO;

@@ -17,7 +17,7 @@
                BlueprintIdentifier = "04C9EFE11D3D80C100846746"
                BuildableName = "Hotel.app"
                BlueprintName = "Hotel"
-               ReferencedContainer = "container:Hotel.xcodeproj">
+               ReferencedContainer = "container:Hotels.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "044B80411D4064EE007BB676"
                BuildableName = "HotelTest.xctest"
                BlueprintName = "HotelTest"
-               ReferencedContainer = "container:Hotel.xcodeproj">
+               ReferencedContainer = "container:Hotels.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "04C9EFE11D3D80C100846746"
             BuildableName = "Hotel.app"
             BlueprintName = "Hotel"
-            ReferencedContainer = "container:Hotel.xcodeproj">
+            ReferencedContainer = "container:Hotels.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "04C9EFE11D3D80C100846746"
             BuildableName = "Hotel.app"
             BlueprintName = "Hotel"
-            ReferencedContainer = "container:Hotel.xcodeproj">
+            ReferencedContainer = "container:Hotels.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -87,7 +87,7 @@
             BlueprintIdentifier = "04C9EFE11D3D80C100846746"
             BuildableName = "Hotel.app"
             BlueprintName = "Hotel"
-            ReferencedContainer = "container:Hotel.xcodeproj">
+            ReferencedContainer = "container:Hotels.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
