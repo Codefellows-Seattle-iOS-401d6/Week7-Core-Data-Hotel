@@ -12,6 +12,8 @@
 #import "Room.h"
 #import "AppDelegate+CoreDataStack.h"
 
+#import "Flurry.h"
+
 @interface AppDelegate ()
 @property (strong, nonatomic) ViewController *viewController ;
 @property (strong, nonatomic) UINavigationController *navController;
@@ -19,10 +21,15 @@
 @end
 
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [Flurry startSession:@"MBDW42VX9D6BTCRNHFRS"];
+    [Flurry logEvent:@"AppLaunched"];
+
     [self setupRootViewController];
     
     [AppDelegate loadDataFromJSON];

@@ -7,6 +7,7 @@
 //
 #import "AppDelegate.h"
 #import "RoomDetailViewController.h"
+#import "Flurry.h"
 
 @interface RoomDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -32,7 +33,9 @@
 
 -(void) viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@)", self.room);
+    [Flurry logEvent:@"ViewedRoomDetail"];
+
+//    NSLog(@"%@)", self.room);
     [self setupTableView];
 }
 

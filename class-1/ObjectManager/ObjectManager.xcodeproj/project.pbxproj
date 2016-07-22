@@ -34,6 +34,12 @@
 		69F9D3C91D41EA4100186333 /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9D3BC1D41EA4100186333 /* Room+CoreDataProperties.m */; };
 		69F9D3CB1D41EA4100186333 /* Hotel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9D3C01D41EA4100186333 /* Hotel+CoreDataProperties.m */; };
 		69F9D3CD1D41EA4100186333 /* Guest+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9D3C41D41EA4100186333 /* Guest+CoreDataProperties.m */; };
+		69F9D6141D41F41600186333 /* ProjectApiKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69F9D5001D41F41600186333 /* ProjectApiKey.txt */; };
+		69F9D6161D41F44B00186333 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F9D6151D41F44B00186333 /* SystemConfiguration.framework */; };
+		69F9D6181D41F45400186333 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F9D6171D41F45400186333 /* Security.framework */; };
+		69F9D6211D41F5D000186333 /* FlurryEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9D61D1D41F5D000186333 /* FlurryEmpty.m */; };
+		69F9D6221D41F5D000186333 /* libFlurry_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F9D61F1D41F5D000186333 /* libFlurry_7.6.6.a */; };
+		69F9D6231D41F5D000186333 /* libFlurryWatch_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F9D6201D41F5D000186333 /* libFlurryWatch_7.6.6.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +104,14 @@
 		69F9D3C01D41EA4100186333 /* Hotel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Hotel+CoreDataProperties.m"; path = "../Hotel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		69F9D3C31D41EA4100186333 /* Guest+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Guest+CoreDataProperties.h"; path = "../Guest+CoreDataProperties.h"; sourceTree = "<group>"; };
 		69F9D3C41D41EA4100186333 /* Guest+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Guest+CoreDataProperties.m"; path = "../Guest+CoreDataProperties.m"; sourceTree = "<group>"; };
+		69F9D5001D41F41600186333 /* ProjectApiKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProjectApiKey.txt; sourceTree = "<group>"; };
+		69F9D6151D41F44B00186333 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		69F9D6171D41F45400186333 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		69F9D61C1D41F5D000186333 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		69F9D61D1D41F5D000186333 /* FlurryEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryEmpty.m; sourceTree = "<group>"; };
+		69F9D61E1D41F5D000186333 /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryWatch.h; sourceTree = "<group>"; };
+		69F9D61F1D41F5D000186333 /* libFlurry_7.6.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_7.6.6.a; sourceTree = "<group>"; };
+		69F9D6201D41F5D000186333 /* libFlurryWatch_7.6.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWatch_7.6.6.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +119,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69F9D6181D41F45400186333 /* Security.framework in Frameworks */,
+				69F9D6231D41F5D000186333 /* libFlurryWatch_7.6.6.a in Frameworks */,
+				69F9D6221D41F5D000186333 /* libFlurry_7.6.6.a in Frameworks */,
+				69F9D6161D41F44B00186333 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +139,10 @@
 		69889B7F1D3D500F00676FF6 = {
 			isa = PBXGroup;
 			children = (
+				69F9D61B1D41F5D000186333 /* Flurry */,
+				69F9D6171D41F45400186333 /* Security.framework */,
+				69F9D6151D41F44B00186333 /* SystemConfiguration.framework */,
+				69F9D3D01D41F41500186333 /* Flurry iPhone SDK viPhone SDK 7 */,
 				69889B8A1D3D500F00676FF6 /* ObjectManager */,
 				699A81B61D3FE2980018443E /* ObjectManagerTests */,
 				69889B891D3D500F00676FF6 /* Products */,
@@ -246,6 +268,26 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
+		69F9D3D01D41F41500186333 /* Flurry iPhone SDK viPhone SDK 7 */ = {
+			isa = PBXGroup;
+			children = (
+				69F9D5001D41F41600186333 /* ProjectApiKey.txt */,
+			);
+			path = "Flurry iPhone SDK viPhone SDK 7";
+			sourceTree = "<group>";
+		};
+		69F9D61B1D41F5D000186333 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				69F9D61C1D41F5D000186333 /* Flurry.h */,
+				69F9D61D1D41F5D000186333 /* FlurryEmpty.m */,
+				69F9D61E1D41F5D000186333 /* FlurryWatch.h */,
+				69F9D61F1D41F5D000186333 /* libFlurry_7.6.6.a */,
+				69F9D6201D41F5D000186333 /* libFlurryWatch_7.6.6.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -328,6 +370,7 @@
 			files = (
 				69889B9E1D3D501000676FF6 /* LaunchScreen.storyboard in Resources */,
 				69889BE41D3D85A000676FF6 /* room.png in Resources */,
+				69F9D6141D41F41600186333 /* ProjectApiKey.txt in Resources */,
 				69889BE21D3D85A000676FF6 /* hotel.png in Resources */,
 				69889BE31D3D85A000676FF6 /* hotels.json in Resources */,
 				69889B9B1D3D501000676FF6 /* Assets.xcassets in Resources */,
@@ -355,6 +398,7 @@
 				6999E1EF1D3ED902000763E7 /* ObjectManager.xcdatamodeld in Sources */,
 				69F9D3C71D41EA4100186333 /* Reservation+CoreDataProperties.m in Sources */,
 				69F9D3CD1D41EA4100186333 /* Guest+CoreDataProperties.m in Sources */,
+				69F9D6211D41F5D000186333 /* FlurryEmpty.m in Sources */,
 				69889B931D3D501000676FF6 /* ViewController.m in Sources */,
 				69F9D3CB1D41EA4100186333 /* Hotel+CoreDataProperties.m in Sources */,
 				69889BD81D3D59F100676FF6 /* Guest.m in Sources */,
@@ -493,6 +537,21 @@
 				INFOPLIST_FILE = ObjectManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					SDK,
+					"7/Flurry-iOS-7.6.6/Flurry",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					SDK,
+					"7/Flurry-iOS-7.6.6/FlurryAds",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.ObjectManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -505,6 +564,21 @@
 				INFOPLIST_FILE = ObjectManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					SDK,
+					"7/Flurry-iOS-7.6.6/Flurry",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					SDK,
+					"7/Flurry-iOS-7.6.6/FlurryAds",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.ObjectManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

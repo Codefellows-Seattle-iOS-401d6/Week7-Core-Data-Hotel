@@ -13,6 +13,8 @@
 #import "Hotel.h"
 #import "ReservationService.h"
 
+#import "Flurry.h"
+
 #import "AppDelegate+CoreDataStack.h"
 
 @interface LookupViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, NSFetchedResultsControllerDelegate>
@@ -178,8 +180,11 @@
         
     } else {
 
-        NSLog(@"fetch success");
-        
+//        NSLog(@"fetch success");
+        Reservation *reservation = [[self.fetchedResultsController fetchedObjects] firstObject];
+        NSString *logstring = [NSString stringWithFormat:@"Found Reservation under name: %@, Room Number: %@, Hotel: %@",reservation.guest.firstName, reservation.room.roomNumber, reservation.room.hotel.name ];
+        [Flurry logEvent: logstring];
+
         
         [self.tableView reloadData];
         
