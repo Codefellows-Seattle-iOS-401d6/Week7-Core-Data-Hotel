@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Reservation.h"
 #import "NSManagedObject+NSManagedObjectContextCategory.h"
+#import "Flurry.h"
 
 @interface ReservationService () <NSFetchedResultsControllerDelegate>
 
@@ -68,6 +69,7 @@
     
     NSError *error;
     NSArray *results = [[NSManagedObject managedContext] executeFetchRequest:request error:&error];
+    [Flurry logEvent:[NSString stringWithFormat:@"Lookup request with search of %@", searchText]];
     if (error) {
         NSLog(@"Error fetching desired request. Error: %@", error);
         return nil;

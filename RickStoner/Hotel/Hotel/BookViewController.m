@@ -8,6 +8,7 @@
 
 #import "BookViewController.h"
 #import "NSManagedObject+NSManagedObjectContextCategory.h"
+#import "Flurry.h"
 
 @interface BookViewController ()
 
@@ -24,8 +25,7 @@
     [super viewDidLoad];
     [self setupBookViewController];
     [self setupMessageLabel];
-    [self setupNameField];
-    
+    [self setupNameField];    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +68,12 @@
     if (error) {
         NSLog(@"Error saving reservation. Error: %@", error);
     } else {
+        NSDictionary *bookParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       self.firstNameField.text, @"first",
+                                       self.lastNameField.text, @"last",
+                                       nil];
+        
+        [Flurry logEvent:@"hotelBooked" withParameters:bookParams];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

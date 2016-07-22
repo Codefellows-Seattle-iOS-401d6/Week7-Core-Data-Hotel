@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "Hotel.h"
 #import "Room.h"
+#import "Flurry.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setupRootController];
     [self bootstrappApp];
+    [Flurry startSession:@"R5NHSPH7FRB7S676R9TR"];
+    [Flurry setEventLoggingEnabled:YES];
+    [Flurry logEvent:@"Launched App"];
     return YES;
 }
 
