@@ -15,8 +15,7 @@
 #import "ReserveViewController.h"
 #import "LookupViewController.h"
 
-#import "NSObject+NSManagedObjectContext.h"
-#import "NSManagedObjectContext+CoreDataStack.h"
+#import "AppDelegate+CoreDataStack.h"
 
 @implementation ReservationService
 
@@ -24,8 +23,6 @@
 - (NSArray *)checkAvailability: (NSDate *)endDate startDate:(NSDate *)startDate
 {
     
-AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-
 NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
         
 request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", endDate, [NSDate date]];
@@ -34,7 +31,7 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
 //    request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", endDate, startDate];
 //
     
-        NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:nil];
+        NSArray *results = [[AppDelegate managedObjectContext] executeFetchRequest:request error:nil];
         
         NSMutableArray *unavailableRooms = [[NSMutableArray alloc]init];
         for (Reservation *reservation in results){
@@ -45,7 +42,7 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
         
         checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
-        return [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
+        return [AppDelegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
 }
 
 - (NSFetchedResultsController *)showAllReservations
@@ -55,7 +52,7 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
     
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"room.reservation.guest.firstName" ascending:YES]];
     
-    NSFetchedResultsController *returnfetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:[NSObject managerContext] sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *returnfetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:AppDelegate.managedObjectContext  sectionNameKeyPath:nil cacheName:nil];
     
     NSError *error;
     [returnfetchedResultsController performFetch:&error];
@@ -78,7 +75,7 @@ request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDa
     reservation.guest = guest;
     
     NSError *error;
-    [[NSObject managerContext] save: &error];
+    [AppDelegate.managedObjectContext save: &error];
     
     if (error) {
         return NO;

@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "NSObject+NSManagedObjectContext.h"
+#import "AppDelegate+CoreDataStack.h"
+
 
 @interface ObjectManagerTests : XCTestCase
 

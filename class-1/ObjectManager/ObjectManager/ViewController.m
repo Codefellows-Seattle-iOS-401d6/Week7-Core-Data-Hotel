@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "DateViewController.h"
 #import "LookupViewController.h"
-#import "NSManagedObjectContext+CoreDataStack.h"
+#import "AppDelegate+CoreDataStack.h"
 
 @import CoreData;
 
@@ -47,10 +47,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    AppDelegate  *delegate = [[UIApplication sharedApplication]delegate];
     
     
-    NSManagedObjectContext *context = delegate.managedObjectContext;
+    NSManagedObjectContext *context = [AppDelegate managedObjectContext];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: @"Guest"];
     NSArray *guests = [context executeFetchRequest: request error: nil];
     

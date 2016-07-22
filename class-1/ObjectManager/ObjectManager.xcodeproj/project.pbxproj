@@ -25,7 +25,6 @@
 		69889BE31D3D85A000676FF6 /* hotels.json in Resources */ = {isa = PBXBuildFile; fileRef = 69889BE01D3D85A000676FF6 /* hotels.json */; };
 		69889BE41D3D85A000676FF6 /* room.png in Resources */ = {isa = PBXBuildFile; fileRef = 69889BE11D3D85A000676FF6 /* room.png */; };
 		6999E1CD1D3DAB01000763E7 /* RoomDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6999E1CC1D3DAB01000763E7 /* RoomDetailViewController.m */; };
-		6999E1D01D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6999E1CF1D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.m */; };
 		6999E1D41D3E9514000763E7 /* ReserveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6999E1D31D3E9514000763E7 /* ReserveViewController.m */; };
 		6999E1D71D3E9FAB000763E7 /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6999E1D61D3E9FAB000763E7 /* AvailabilityViewController.m */; };
 		6999E1DA1D3EA8A6000763E7 /* DateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6999E1D91D3EA8A6000763E7 /* DateViewController.m */; };
@@ -34,7 +33,7 @@
 		699A81B81D3FE2990018443E /* ObjectManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A81B71D3FE2990018443E /* ObjectManagerTests.m */; };
 		699A81C11D3FF99D0018443E /* LookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A81C01D3FF99D0018443E /* LookupViewController.m */; };
 		699A81C41D403E570018443E /* ReservationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A81C31D403E570018443E /* ReservationService.m */; };
-		699A81CD1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 699A81CC1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.m */; };
+		69F9D3B01D41835D00186333 /* AppDelegate+CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F9D3AF1D41835D00186333 /* AppDelegate+CoreDataStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +79,6 @@
 		69889BE11D3D85A000676FF6 /* room.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = room.png; sourceTree = "<group>"; };
 		6999E1CB1D3DAB01000763E7 /* RoomDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomDetailViewController.h; sourceTree = "<group>"; };
 		6999E1CC1D3DAB01000763E7 /* RoomDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomDetailViewController.m; sourceTree = "<group>"; };
-		6999E1CE1D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSManagedObjectContext.h"; sourceTree = "<group>"; };
-		6999E1CF1D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSManagedObjectContext.m"; sourceTree = "<group>"; };
 		6999E1D21D3E9514000763E7 /* ReserveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveViewController.h; sourceTree = "<group>"; };
 		6999E1D31D3E9514000763E7 /* ReserveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveViewController.m; sourceTree = "<group>"; };
 		6999E1D51D3E9FAB000763E7 /* AvailabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailabilityViewController.h; sourceTree = "<group>"; };
@@ -98,8 +95,8 @@
 		699A81C01D3FF99D0018443E /* LookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupViewController.m; sourceTree = "<group>"; };
 		699A81C21D403E570018443E /* ReservationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationService.h; sourceTree = "<group>"; };
 		699A81C31D403E570018443E /* ReservationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationService.m; sourceTree = "<group>"; };
-		699A81CB1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+CoreDataStack.h"; sourceTree = "<group>"; };
-		699A81CC1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+CoreDataStack.m"; sourceTree = "<group>"; };
+		69F9D3AE1D41835D00186333 /* AppDelegate+CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+CoreDataStack.h"; sourceTree = "<group>"; };
+		69F9D3AF1D41835D00186333 /* AppDelegate+CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreDataStack.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,8 +164,6 @@
 			children = (
 				69889B8E1D3D501000676FF6 /* AppDelegate.h */,
 				69889B8F1D3D501000676FF6 /* AppDelegate.m */,
-				699A81CB1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.h */,
-				699A81CC1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.m */,
 				69889B9F1D3D501000676FF6 /* Info.plist */,
 			);
 			name = "App Global";
@@ -235,8 +230,8 @@
 		6999E1D11D3E8F8D000763E7 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				6999E1CE1D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.h */,
-				6999E1CF1D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.m */,
+				69F9D3AE1D41835D00186333 /* AppDelegate+CoreDataStack.h */,
+				69F9D3AF1D41835D00186333 /* AppDelegate+CoreDataStack.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -353,10 +348,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				69889BD21D3D59F100676FF6 /* Room.m in Sources */,
-				699A81CD1D40714C0018443E /* NSManagedObjectContext+CoreDataStack.m in Sources */,
 				69889BDB1D3D698600676FF6 /* HotelsViewController.m in Sources */,
 				6999E1CD1D3DAB01000763E7 /* RoomDetailViewController.m in Sources */,
 				6999E1EE1D3ED902000763E7 /* Guest+CoreDataProperties.m in Sources */,
+				69F9D3B01D41835D00186333 /* AppDelegate+CoreDataStack.m in Sources */,
 				6999E1EF1D3ED902000763E7 /* ObjectManager.xcdatamodeld in Sources */,
 				69889BD11D3D59F100676FF6 /* Room+CoreDataProperties.m in Sources */,
 				69889BD31D3D59F100676FF6 /* Hotel+CoreDataProperties.m in Sources */,
@@ -367,7 +362,6 @@
 				699A81C11D3FF99D0018443E /* LookupViewController.m in Sources */,
 				69889BD61D3D59F100676FF6 /* Reservation.m in Sources */,
 				69889B901D3D501000676FF6 /* AppDelegate.m in Sources */,
-				6999E1D01D3E8F5F000763E7 /* NSObject+NSManagedObjectContext.m in Sources */,
 				69889BD41D3D59F100676FF6 /* Hotel.m in Sources */,
 				6999E1D71D3E9FAB000763E7 /* AvailabilityViewController.m in Sources */,
 				69889BDE1D3D69B100676FF6 /* RoomsViewController.m in Sources */,

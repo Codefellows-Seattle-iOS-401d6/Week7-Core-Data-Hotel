@@ -8,9 +8,9 @@
 
 #import "HotelsViewController.h"
 #import "AppDelegate.h"
+#import "AppDelegate+CoreDataStack.h"
 #import "Hotel.h"
 #import "RoomsViewController.h"
-#import "NSObject+NSManagedObjectContext.h"
 
 @interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate> //conform to delegate,
 
@@ -30,7 +30,7 @@
         
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
         
-        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[NSObject managerContext] sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:AppDelegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
         _fetchedResultsController.delegate = self;
         
@@ -45,26 +45,6 @@
     }
     return _fetchedResultsController;
 }
-
-//- (NSArray *)datasource
-//{
-//    if(!_datasource) {
-//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        NSManagedObjectContext *context = delegate.managedObjectContext;
-//        
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-//        
-//        NSError *fetchError;
-//        
-//        _datasource = [context executeFetchRequest:request error:&fetchError];
-//        
-//        if (fetchError){
-//            NSLog(@"error fetching from core data");
-//        }
-//    }
-//    
-//    return _datasource;
-//}
 
 -(void) loadView {
     [super loadView];
@@ -108,11 +88,6 @@
 
 #pragma mark - UITableViewDataSource
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return self.datasource.count;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([[self.fetchedResultsController sections]count] >0) {
@@ -134,7 +109,6 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-//    Hotel *hotel = self.datasource [indexPath.row];
     Hotel *hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = hotel.name;
     
@@ -153,8 +127,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete){
         Hotel * hotel = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        [[NSObject managerContext]deleteObject:hotel];
-        [[NSObject managerContext]save:nil];
+        [AppDelegate.managedObjectContext deleteObject:hotel];
+        [AppDelegate.managedObjectContext save:nil];
     }
 }
 

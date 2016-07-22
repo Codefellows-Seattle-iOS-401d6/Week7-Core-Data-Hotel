@@ -13,8 +13,6 @@
 #import "Reservation.h"
 #import "ReservationService.h"
 
-#import "NSObject+NSManagedObjectContext.h"
-
 @interface ReserveViewController ()
 
 @property (strong, nonatomic) UITextField *firstNameField;

@@ -13,7 +13,7 @@
 #import "Hotel.h"
 #import "ReservationService.h"
 
-#import "NSObject+NSManagedObjectContext.h"
+#import "AppDelegate+CoreDataStack.h"
 
 @interface LookupViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 //@property  (strong, nonatomic) NSArray *datasource;
@@ -118,8 +118,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete){
         Reservation * reservation = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        [[NSObject managerContext]deleteObject:reservation];
-        [[NSObject managerContext]save:nil];
+        [AppDelegate.managedObjectContext deleteObject:reservation];
+        [AppDelegate.managedObjectContext save:nil];
     }
 }
 
