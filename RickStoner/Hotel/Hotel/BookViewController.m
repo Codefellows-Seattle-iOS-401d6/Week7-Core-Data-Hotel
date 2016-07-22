@@ -14,7 +14,7 @@
 @property (strong, nonatomic)UITextField *firstNameField;
 @property (strong, nonatomic)UITextField *lastNameField;
 @property (strong, nonatomic)UITextField *emailField;
-@property (strong, nonatomic)UITextField *phoneNumber;
+@property (strong, nonatomic)UITextField *phoneNumberField;
 
 @end
 
@@ -61,7 +61,7 @@
     Reservation *reservation = [Reservation reservationWithStartDate:self.startDate endDate:self.endDate room:self.room];
     
     self.room.reservation = reservation;
-    reservation.guest = [Guest guestWithName:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text];
+    reservation.guest = [Guest guestWithName:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text phoneNumber:self.phoneNumberField.text];
     
     NSError* error;
     [[NSManagedObject managedContext] save:&error];
@@ -115,22 +115,22 @@
     self.firstNameField = [[UITextField alloc]init];
     self.lastNameField = [[UITextField alloc]init];
     self.emailField = [[UITextField alloc]init];
-    self.phoneNumber = [[UITextField alloc]init];
+    self.phoneNumberField = [[UITextField alloc]init];
     
     self.firstNameField.placeholder = @"Please enter your first name";
     self.lastNameField.placeholder = @"Please enter your last name";
     self.emailField.placeholder = @"Please enter email";
-    self.phoneNumber.placeholder = @"Please enter your phone number";
+    self.phoneNumberField.placeholder = @"Please enter your phone number";
     
     [self.view addSubview:self.firstNameField];
     [self.view addSubview:self.lastNameField];
     [self.view addSubview:self.emailField];
-    [self.view addSubview:self.phoneNumber];
+    [self.view addSubview:self.phoneNumberField];
         
     self.firstNameField.translatesAutoresizingMaskIntoConstraints = NO;
     self.lastNameField.translatesAutoresizingMaskIntoConstraints = NO;
     self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
-    self.phoneNumber.translatesAutoresizingMaskIntoConstraints = NO;
+    self.phoneNumberField.translatesAutoresizingMaskIntoConstraints = NO;
     
     
     NSLayoutConstraint *leadingFirst = [NSLayoutConstraint constraintWithItem: self.firstNameField
@@ -204,7 +204,7 @@
                                                                 attribute:NSLayoutAttributeTop
                                                                multiplier:1.0
                                                                  constant:204.0];
-    NSLayoutConstraint *leadingPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumber
+    NSLayoutConstraint *leadingPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumberField
                                                                     attribute:NSLayoutAttributeLeading
                                                                     relatedBy:NSLayoutRelationEqual
                                                                        toItem:self.view
@@ -212,7 +212,7 @@
                                                                    multiplier:1.0
                                                                      constant:20.0];
     
-    NSLayoutConstraint *trailingPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumber
+    NSLayoutConstraint *trailingPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumberField
                                                                      attribute:NSLayoutAttributeTrailing
                                                                      relatedBy:NSLayoutRelationEqual
                                                                         toItem:self.view
@@ -220,7 +220,7 @@
                                                                     multiplier:1.0
                                                                       constant:-20.0];
     
-    NSLayoutConstraint *topPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumber
+    NSLayoutConstraint *topPhone = [NSLayoutConstraint constraintWithItem: self.phoneNumberField
                                                                 attribute:NSLayoutAttributeTop
                                                                 relatedBy:NSLayoutRelationEqual
                                                                    toItem:self.view
