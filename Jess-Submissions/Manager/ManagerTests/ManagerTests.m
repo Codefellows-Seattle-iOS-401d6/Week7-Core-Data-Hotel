@@ -42,19 +42,7 @@
     XCTAssertTrue(self.context.concurrencyType == NSMainQueueConcurrencyType, @"Context should be created on the main Q.");
 }
 
-//- (void)testCoreDataSave
-//{
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-//    request.resultType = NSCountResultType;
-//    
-//    NSError *error;
-//    NSArray *result = [self.context executeFetchRequest:request error:&error];
-//    NSNumber *count = result.firstObject;
-//    
-//    XCTAssertNotNil(error, @"Error performing request");
-//    XCTAssertNotNil(result, @"Result array should NOT be nil");
-//    XCTAssertTrue(count.intValue > 0, @"Number of objects should not be 0.");
-//    
-//}
+
+
 
 @end
