@@ -2,7 +2,7 @@
 //  Hotel+CoreDataProperties.m
 //  ObjectManager
 //
-//  Created by Derek Graham on 7/18/16.
+//  Created by Derek Graham on 7/21/16.
 //  Copyright © 2016 Derek Graham. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,8 +13,8 @@
 
 @implementation Hotel (CoreDataProperties)
 
-@dynamic name;
 @dynamic location;
+@dynamic name;
 @dynamic rating;
 @dynamic rooms;
 

@@ -2,7 +2,7 @@
 //  Reservation+CoreDataProperties.h
 //  ObjectManager
 //
-//  Created by Derek Graham on 7/18/16.
+//  Created by Derek Graham on 7/21/16.
 //  Copyright © 2016 Derek Graham. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSDate *endDate;
 @property (nullable, nonatomic, retain) NSDate *startDate;
-@property (nullable, nonatomic, retain) Room *room;
 @property (nullable, nonatomic, retain) Guest *guest;
+@property (nullable, nonatomic, retain) Room *room;
 
 @end
 
