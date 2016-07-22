@@ -6,10 +6,7 @@
 //  Copyright © 2016 Michael Babiy. All rights reserved.
 //
 
-#import "HotelsViewController.h"
-#import "AppDelegate.h"
-#import "Hotel.h"
-#import "RoomsViewController.h"
+
 
 @interface HotelsViewController () <UITableViewDelegate, UITableViewDataSource>
 
