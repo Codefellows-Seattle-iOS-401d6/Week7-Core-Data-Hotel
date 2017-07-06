@@ -1,21 +1,19 @@
 //
-//  Hotel+CoreDataProperties.m
+//  Guest+CoreDataProperties.m
 //  Manager
 //
 //  Created by David Livingstone on 7/18/16.
-//  Copyright © 2016 Michael Babiy. All rights reserved.
+//  Copyright © 2016 David Livingstone. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Hotel+CoreDataProperties.h"
+#import "Guest+CoreDataProperties.h"
 
-@implementation Hotel (CoreDataProperties)
+@implementation Guest (CoreDataProperties)
 
-@dynamic location;
 @dynamic name;
-@dynamic stars;
-@dynamic rooms;
+@dynamic reservation;
 
 @end
