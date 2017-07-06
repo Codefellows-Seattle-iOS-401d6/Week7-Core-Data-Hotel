@@ -2,7 +2,7 @@
 //  Guest+CoreDataProperties.m
 //  Manager
 //
-//  Created by Michael Babiy on 7/18/16.
+//  Created by David Livingstone on 7/18/16.
 //  Copyright © 2016 Michael Babiy. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

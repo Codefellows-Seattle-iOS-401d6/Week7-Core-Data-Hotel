@@ -31,6 +31,8 @@
     
 }
 
+
+
 -(void)setupTableView{
     
     self.tableView = [[UITableView alloc]init];
@@ -80,7 +82,7 @@
 }
 
 
-
+// excluding unavailable rooms
 
 -(NSArray *)datasource{
     
@@ -98,18 +100,14 @@
             [unavailableRooms addObject:reservation.room];
         }
         
-        
         NSFetchRequest *checkRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
         
         checkRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
-        
         _datasource = [delegate.managedObjectContext executeFetchRequest:checkRequest error:nil];
-        
     }
     
     return _datasource;
-    
 }
 
 
